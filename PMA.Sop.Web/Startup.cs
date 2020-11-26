@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using PMA.Sop.DAL.Context;
 using PMA.Sop.Resources.Resources;
 
 namespace PMA.Sop.Web
@@ -29,6 +31,10 @@ namespace PMA.Sop.Web
                         options.DataAnnotationLocalizerProvider = (type, factory) =>
                             factory.Create(typeof(SharedResource));
                     });
+
+            services.AddDbContext<AccDbContext>(options =>
+                options.UseSqlServer(_configuration.GetConnectionString("DefaultCnn"), builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
+
             services.AddAntiforgery();
         }
 

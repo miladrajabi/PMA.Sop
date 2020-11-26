@@ -20,4 +20,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PMA.Sop.Domain\PMA.Sop.Domain.csproj" />
+    <ProjectReference Include="..\PMA.Sop.Framework\PMA.Sop.Framework.csproj" />
+  </ItemGroup>
+
 </Project>

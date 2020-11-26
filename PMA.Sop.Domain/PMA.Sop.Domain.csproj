@@ -14,4 +14,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PMA.Sop.Framework\PMA.Sop.Framework.csproj" />
+  </ItemGroup>
+
 </Project>
