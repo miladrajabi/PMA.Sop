@@ -25,4 +25,9 @@
     <ProjectReference Include="..\PMA.Sop.Framework\PMA.Sop.Framework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="User\Configs\" />
+    <Folder Include="User\Repositories\" />
+  </ItemGroup>
+
 </Project>
