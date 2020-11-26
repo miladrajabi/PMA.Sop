@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Localization;
-using PMA.Sop.DAL.Resources.Interface;
+using PMA.Sop.Framework.Resources.Interface;
 
-namespace PMA.Sop.DAL.Resources
+namespace PMA.Sop.Framework.Resources
 {
     public class ResourceManager<TResource> : IResourceManager
     {

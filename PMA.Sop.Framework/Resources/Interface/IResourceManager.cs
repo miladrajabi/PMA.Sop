@@ -1,4 +1,4 @@
-﻿namespace PMA.Sop.DAL.Resources.Interface
+﻿namespace PMA.Sop.Framework.Resources.Interface
 {
     public interface IResourceManager
     {
