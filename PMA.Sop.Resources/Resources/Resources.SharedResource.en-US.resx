@@ -303,6 +303,9 @@
   <data name="ParentCategory" xml:space="preserve">
     <value>دسته‌بندی سرگروه</value>
   </data>
+  <data name="Password" xml:space="preserve">
+    <value>رمز عبور</value>
+  </data>
   <data name="PaymentDone" xml:space="preserve">
     <value>پرداخت موفق</value>
   </data>
@@ -316,7 +319,7 @@
     <value>پرداخت ناموفق بود.</value>
   </data>
   <data name="Phone" xml:space="preserve">
-    <value>تلفن</value>
+    <value>شماره همراه</value>
   </data>
   <data name="PhoneError" xml:space="preserve">
     <value>شماره همراه را به درستی وارد نمایید</value>
@@ -345,10 +348,16 @@
   <data name="Quantity" xml:space="preserve">
     <value>تعداد</value>
   </data>
+  <data name="Register" xml:space="preserve">
+    <value>ثبت نام</value>
+  </data>
   <data name="Remove" xml:space="preserve">
     <value>حذف</value>
   </data>
   <data name="RePassword" xml:space="preserve">
+    <value>تکرار رمز عبور</value>
+  </data>
+  <data name="RePasswordError" xml:space="preserve">
     <value>تکرار رمز عبور یکسان نمیباشد.</value>
   </data>
   <data name="Required" xml:space="preserve">

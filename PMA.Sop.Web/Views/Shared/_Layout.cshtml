@@ -3,11 +3,48 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <title>فروشگاه آنلاین | @ViewBag.Title</title>
+    <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+    <partial name="_PageStyles" />
+    @await RenderSectionAsync("style", false)
 </head>
 <body>
-    <div>
+    <partial name="_header" />
+
+    <div class="off_canvars_overlay"></div>
+
+    <div class="col-md-12">
         @RenderBody()
     </div>
+
+    <!--call to action start-->
+    <section class="call_to_action">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="call_action_inner">
+                        <div class="call_text">
+                            <h3> ما داریم<span> توصیه ها </span> برای شما</h3>
+                            <p>با کد تخفیف راست چین 30% تخفیف بگیرید</p>
+                        </div>
+                        <div class="discover_now">
+                            <a href="#"> اکنون کشف کنید </a>
+                        </div>
+                        <div class="link_follow">
+                            <ul>
+                                <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                                <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                                <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <partial name="_footer" />
+    <partial name="_PageScripts" />
+    @await RenderSectionAsync("Scripts", false)
 </body>
 </html>

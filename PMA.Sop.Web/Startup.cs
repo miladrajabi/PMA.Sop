@@ -7,7 +7,12 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using PMA.Sop.Core.Services;
+using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.DAL.Context;
+using PMA.Sop.Domain.User.Entities;
+using PMA.Sop.Framework.Resources;
+using PMA.Sop.Framework.Resources.Interface;
 using PMA.Sop.Resources.Resources;
 
 namespace PMA.Sop.Web
@@ -25,6 +30,10 @@ namespace PMA.Sop.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
+            var mailAddress = _configuration.GetValue<string>("EmailInfo:MailAddress");
+            var mailPassword = _configuration.GetValue<string>("EmailInfo:MailPassword");
+            services.AddLocalization(opt => opt.ResourcesPath = "Resources");
+
             services.AddMvc()
                 .AddRazorRuntimeCompilation()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
@@ -35,11 +44,18 @@ namespace PMA.Sop.Web
                 });
             services.AddAntiforgery();
 
-            #region MyRegion
+            services.AddTransient<IResourceManager, ResourceManager<SharedResource>>();
+            services.AddTransient<IEmailService>(provider => new EmailService(mailAddress, mailPassword));
+
+            #region Authentication
 
             services.AddDbContext<AccDbContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("DefaultCnn"),
                     builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
+
+            services.AddIdentity<ApplicationUser, ApplicationRole>()
+                .AddEntityFrameworkStores<AccDbContext>()
+                .AddDefaultTokenProviders();
 
             services.Configure<IdentityOptions>(options =>
             {
@@ -66,10 +82,10 @@ namespace PMA.Sop.Web
             {
                 // Cookie settings
                 options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
 
-                options.LoginPath = "/Identity/Account/Login";
-                options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+                options.LoginPath = "/Account/Login";
+                options.AccessDeniedPath = "/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
             #endregion
@@ -91,8 +107,9 @@ namespace PMA.Sop.Web
             app.UseStaticFiles();
             app.UseStatusCodePages();
             app.UseRouting();
-            app.UseAuthentication();
+
             app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseEndpoints(endpoints =>
             {

@@ -101,8 +101,12 @@ namespace PMA.Sop.Resources.Resources
         public const string PaymentError = nameof(PaymentError);
         public const string PaymentDone = nameof(PaymentDone);
         public const string Return = nameof(Return);
+
         public const string EmailError = nameof(EmailError);
         public const string PhoneError = nameof(PhoneError);
         public const string RePassword = nameof(RePassword);
+        public const string Password = nameof(Password);
+        public const string RePasswordError = nameof(RePasswordError);
+        public const string Register = nameof(Register);
     }
 }

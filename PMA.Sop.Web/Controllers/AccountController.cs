@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using PMA.Sop.Core.DTOs.User;
+using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.Domain.User.Entities;
 
 namespace PMA.Sop.Web.Controllers
@@ -13,17 +14,19 @@ namespace PMA.Sop.Web.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IEmailService _emailService;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager)
+        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, IEmailService emailService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _emailService = emailService;
         }
 
         [Route("Register")]
         public IActionResult Register()
         {
-            return View();
+            return View(new RegisterUserDto());
         }
 
         [HttpPost]
@@ -32,24 +35,39 @@ namespace PMA.Sop.Web.Controllers
         {
             if (!ModelState.IsValid) return View(register);
 
-            var model = new ApplicationUser
+            var user = new ApplicationUser
             {
                 UserName = register.Email,
                 Email = register.Email,
                 PhoneNumber = register.PhoneNumber,
                 EmailConfirmed = false
             };
-            var res = await _userManager.CreateAsync(model, register.Password);
+            var res = await _userManager.CreateAsync(user, register.Password);
             if (res.Succeeded)
             {
-                var token = await _userManager.GenerateEmailConfirmationTokenAsync(model);
-
+                if (user.EmailConfirmed)
+                {
+                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                    var callbackUrl = Url.Action("ConfirmEmail", "Account", new
+                    {
+                        UserId = user.Id,
+                        token = token
+                    }, protocol: Request.Scheme);
+                    var body = $"لطفا برای فعال حساب کاربری بر روی لینک زیر کلیک کنید!  <br/> <a href={callbackUrl}> Link </a>";
+                    await _emailService.Execute(user.Email, body, "فعال سازی حساب کاربری");
+                    return RedirectToAction(nameof(DisplayEmail));
+                }
                 return RedirectToAction(nameof(Index), "Home");
             }
             foreach (var err in res.Errors)
             {
                 ModelState.AddModelError(string.Empty, err.Description);
             }
+            return View();
+        }
+
+        public IActionResult DisplayEmail()
+        {
             return View();
         }
 
@@ -102,5 +120,21 @@ namespace PMA.Sop.Web.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Index), "Home");
         }
+
+        public async Task<IActionResult> ConfirmEmail(string UserId, string Token)
+        {
+            if (UserId == null || Token == null)
+                return BadRequest();
+            var user = _userManager.FindByIdAsync(UserId).Result;
+            if (user == null)
+                return RedirectToAction(nameof(Login));
+
+            var result = await _userManager.ConfirmEmailAsync(user, Token);
+            if (result.Succeeded)
+                return RedirectToAction(nameof(Index), "Home");
+            return RedirectToAction("login");
+
+        }
+
     }
 }
