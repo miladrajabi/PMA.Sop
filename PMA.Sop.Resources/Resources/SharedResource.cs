@@ -108,5 +108,9 @@ namespace PMA.Sop.Resources.Resources
         public const string Password = nameof(Password);
         public const string RePasswordError = nameof(RePasswordError);
         public const string Register = nameof(Register);
+        public const string Login = nameof(Login);
+        public const string ForgetPassword = nameof(ForgetPassword);
+        public const string ForgetPasswordText = nameof(ForgetPasswordText);
+        public const string SendBtn = nameof(SendBtn);
     }
 }

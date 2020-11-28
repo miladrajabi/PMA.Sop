@@ -24,23 +24,24 @@
                                 @if (User.Identity.IsAuthenticated)
                                 {
                                     <li class="top_links">
-                                        <a href="#"><i class="ion-android-person"></i> حساب من<i class="ion-ios-arrow-down"></i></a>
+                                        <a href="#"><i class="ion-android-person"></i>&nbsp; @User.Identity.Name <i class="ion-ios-arrow-down"></i></a>
                                         <ul class="dropdown_links">
-                                            <li><a asp-action="Login" asp-controller="Account">ورود</a></li>
-                                            <li><a href="my-account.html">حساب کاربری من </a></li>
-                                            <li><a href="cart.html">سبد خرید</a></li>
-                                            <li><a href="wishlist.html">فروشگاه</a></li>
+                                            <li><a href="my-account.html"><i class="fa fa-user-circle"></i>&nbsp; مشاهده حساب کاربری  </a></li>
+                                            <li><a href="cart.html"><i class="fa fa-shopping-basket"></i>&nbsp;سبد خرید</a></li>
+                                            <li><a asp-action="LogOut" asp-controller="Account"><i class="fa fa-sign-out"></i>&nbsp;خروج</a></li>
                                         </ul>
                                     </li>
                                 }
-
-                                <li class="language">
-                                    <a href="#"><img src="/img/logo/language.png" alt="">ورود / ثبت نام<i class="ion-ios-arrow-down"></i></a>
-                                    <ul class="dropdown_language">
-                                        <li><a asp-action="Login" asp-controller="Account"><img src="/img/logo/language.png" alt=""> ورود</a></li>
-                                        <li><a asp-action="Register" asp-controller="Account"><img src="/img/logo/register.png" alt=""> ثبت نام</a></li>
-                                    </ul>
-                                </li>
+                                else
+                                {
+                                    <li class="language">
+                                        <a href="#"><i class="ion-android-person"></i>&nbsp;ورود / ثبت نام<i class="ion-ios-arrow-down"></i></a>
+                                        <ul class="dropdown_language">
+                                            <li><a asp-action="Login" asp-controller="Account"><i class="fa fa-sign-in"></i>&nbsp; ورود</a></li>
+                                            <li><a asp-action="Register" asp-controller="Account"><i class="fa fa-registered"></i>&nbsp;ثبت نام</a></li>
+                                        </ul>
+                                    </li>
+                                }
                                 <li class="currency">
                                     <a href="#">ریال <i class="ion-ios-arrow-down"></i></a>
                                     <ul class="dropdown_currency">

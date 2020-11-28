@@ -213,6 +213,12 @@
   <data name="FirstName" xml:space="preserve">
     <value>نام</value>
   </data>
+  <data name="ForgetPassword" xml:space="preserve">
+    <value>بازیابی رمز عبور</value>
+  </data>
+  <data name="ForgetPasswordText" xml:space="preserve">
+    <value>ارسال پست الکترونیک</value>
+  </data>
   <data name="FullName" xml:space="preserve">
     <value>نام و نام خانوادگی</value>
   </data>
@@ -242,6 +248,9 @@
   </data>
   <data name="ListOfMasters" xml:space="preserve">
     <value>لیست اساتید</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>ورود</value>
   </data>
   <data name="LowestToHighestPrice" xml:space="preserve">
     <value>گران ترین</value>
@@ -368,6 +377,9 @@
   </data>
   <data name="Save" xml:space="preserve">
     <value>ثبت</value>
+  </data>
+  <data name="SendBtn" xml:space="preserve">
+    <value>ارسال</value>
   </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>توضیحات مختصر</value>

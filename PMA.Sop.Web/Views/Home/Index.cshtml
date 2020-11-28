@@ -1,7 +1,5 @@
-﻿
+﻿@inject IResourceManager _resourceManager
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = _resourceManager[SharedResource.HomePage];
 }
-
-<h1>Index</h1>
 

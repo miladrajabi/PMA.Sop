@@ -115,10 +115,40 @@ namespace PMA.Sop.Web.Controllers
         }
 
         [Route("Logout")]
-        public async Task<IActionResult> LogOut()
+        public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
             return RedirectToAction(nameof(Index), "Home");
+        }
+        public IActionResult ForgetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> ForgetPassword(ForgetPasswordDto model)
+        {
+            if (!ModelState.IsValid) return View(model);
+            var user = await _userManager.FindByEmailAsync(model.Email);
+            if (user != null)
+            {
+                if (user.EmailConfirmed && await _userManager.IsEmailConfirmedAsync(user))
+                {
+
+                }
+                var token = await _userManager.GeneratePasswordResetTokenAsync(user);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new
+                {
+                    UserId = user.Id,
+                    token = token
+                }, protocol: Request.Scheme);
+                var body = $"لطفا برای بازیابی رمز عبور حساب کاربری بر روی لینک زیر کلیک کنید!  <br/> <a href={callbackUrl}> Link </a>";
+                await _emailService.Execute(user.Email, body, "بازیابی رمز عبور حساب کاربری");
+                ViewBag.ForgetMessage = "لینک بازیابی رمز عبور ارسال گردید.";
+            }
+            else
+                ViewBag.ForgetMessage = "نام کاربری موجود نمی باشد";
+
+            return View();
         }
 
         public async Task<IActionResult> ConfirmEmail(string UserId, string Token)
@@ -136,5 +166,32 @@ namespace PMA.Sop.Web.Controllers
 
         }
 
+        public IActionResult ResetPassword(string UserId, string Token)
+        {
+            return View(new ResetPasswordDto
+            {
+                TokenId = Token,
+                UserId = UserId,
+            });
+        }
+        [HttpPost]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDto reset)
+        {
+            if (!ModelState.IsValid) return View(reset);
+            var user = await _userManager.FindByIdAsync(reset.UserId);
+            if (user != null)
+            {
+                var res = await _userManager.ResetPasswordAsync(user, reset.TokenId, reset.Password);
+                if (res.Succeeded)
+                {
+                    return RedirectToAction(nameof(Login));
+                }
+                foreach (var err in res.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, err.Description);
+                }
+            }
+            return View();
+        }
     }
 }
