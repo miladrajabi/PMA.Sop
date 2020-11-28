@@ -55,7 +55,8 @@ namespace PMA.Sop.Web
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
                 .AddEntityFrameworkStores<AccDbContext>()
-                .AddDefaultTokenProviders();
+                .AddDefaultTokenProviders()
+                .AddErrorDescriber<CustomIdentityError>();
 
             services.Configure<IdentityOptions>(options =>
             {
