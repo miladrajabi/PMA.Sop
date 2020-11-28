@@ -115,6 +115,7 @@ namespace PMA.Sop.Web.Controllers
         }
 
         [Route("Logout")]
+        //[Authorize]
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();

@@ -1,12 +1,16 @@
 using System;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using PMA.Sop.Core.Convertors;
+using PMA.Sop.Core.Convertors.Interfaces;
 using PMA.Sop.Core.Services;
 using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.DAL.Context;
@@ -33,7 +37,9 @@ namespace PMA.Sop.Web
             var mailAddress = _configuration.GetValue<string>("EmailInfo:MailAddress");
             var mailPassword = _configuration.GetValue<string>("EmailInfo:MailPassword");
             services.AddLocalization(opt => opt.ResourcesPath = "Resources");
-
+            //var policy = new AuthorizationPolicyBuilder()
+            //    .RequireAuthenticatedUser()
+            //    .Build();
             services.AddMvc()
                 .AddRazorRuntimeCompilation()
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
@@ -46,6 +52,7 @@ namespace PMA.Sop.Web
 
             services.AddTransient<IResourceManager, ResourceManager<SharedResource>>();
             services.AddTransient<IEmailService>(provider => new EmailService(mailAddress, mailPassword));
+            services.AddTransient<IViewRenderService, RenderViewToString>();
 
             #region Authentication
 
@@ -110,8 +117,8 @@ namespace PMA.Sop.Web
             app.UseStatusCodePages();
             app.UseRouting();
 
-            app.UseAuthorization();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
