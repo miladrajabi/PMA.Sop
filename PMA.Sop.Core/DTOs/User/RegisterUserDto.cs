@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using PMA.Sop.Resources.Resources;
 
@@ -28,5 +29,7 @@ namespace PMA.Sop.Core.DTOs.User
         [Compare(nameof(Password), ErrorMessage = SharedResource.RePasswordError)]
         [Required(ErrorMessage = SharedResource.Required)]
         public string RePassword { get; set; }
+
+        public DateTime RegisteredDate { get; set; }
     }
 }

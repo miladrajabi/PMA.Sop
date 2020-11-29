@@ -6,7 +6,7 @@ namespace PMA.Sop.DAL.Context
 {
     public class AccDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int>
     {
-        public AccDbContext(DbContextOptions options) : base(options)
+        public AccDbContext(DbContextOptions<AccDbContext> options) : base(options)
         {
 
         }

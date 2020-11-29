@@ -40,7 +40,8 @@ namespace PMA.Sop.Web.Controllers
                 UserName = register.Email,
                 Email = register.Email,
                 PhoneNumber = register.PhoneNumber,
-                EmailConfirmed = false
+                EmailConfirmed = false,
+                RegisteredDate = DateTime.Now
             };
             var res = await _userManager.CreateAsync(user, register.Password);
             if (res.Succeeded)

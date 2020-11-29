@@ -8,6 +8,9 @@
     <Folder Include="User\Commands\" />
     <Folder Include="User\Repositories\" />
     <Folder Include="User\Queries\" />
+    <Folder Include="Wallet\Commands\" />
+    <Folder Include="Wallet\Repositories\" />
+    <Folder Include="Wallet\Queries\" />
   </ItemGroup>
 
   <ItemGroup>

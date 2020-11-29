@@ -54,6 +54,10 @@ namespace PMA.Sop.Web
             services.AddTransient<IEmailService>(provider => new EmailService(mailAddress, mailPassword));
             services.AddTransient<IViewRenderService, RenderViewToString>();
 
+            services.AddDbContext<DatabaseContext>(options =>
+                options.UseSqlServer(_configuration.GetConnectionString("DefaultCnn"),
+                    builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
+
             #region Authentication
 
             services.AddDbContext<AccDbContext>(options =>

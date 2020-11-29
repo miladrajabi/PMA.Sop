@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMA.Sop.DAL.Context;
 
 namespace PMA.Sop.DAL.Migrations
 {
     [DbContext(typeof(AccDbContext))]
-    partial class AccDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201129160630_add_user_newField_datetime")]
+    partial class add_user_newField_datetime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,13 +1,17 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PMA.Sop.Domain.Wallet.Entities;
 
 namespace PMA.Sop.DAL.Context
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions options) : base(options)
+        public DatabaseContext(DbContextOptions<DatabaseContext> options) : base(options)
         {
 
         }
+
+        public DbSet<Domain.Wallet.Entities.Wallet> Wallets { get; set; }
+        public DbSet<WalletType> WalletTypes { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
