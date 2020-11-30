@@ -309,6 +309,9 @@
   <data name="PagePrevious" xml:space="preserve">
     <value>قبلی</value>
   </data>
+  <data name="Panel" xml:space="preserve">
+    <value>پنل کاربری</value>
+  </data>
   <data name="ParentCategory" xml:space="preserve">
     <value>دسته‌بندی سرگروه</value>
   </data>
@@ -404,6 +407,9 @@
   </data>
   <data name="ViewProducts" xml:space="preserve">
     <value>مشاهده فروشگاه</value>
+  </data>
+  <data name="Wallet" xml:space="preserve">
+    <value>کیف پول</value>
   </data>
   <data name="WelcomeAdmin" xml:space="preserve">
     <value>&lt;h5&gt;به سامانه مدیریت نرم افزار ترمه خوش آمدید&lt;/h5&gt;

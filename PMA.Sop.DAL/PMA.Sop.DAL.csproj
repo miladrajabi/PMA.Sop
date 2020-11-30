@@ -28,7 +28,6 @@
   <ItemGroup>
     <Folder Include="User\Configs\" />
     <Folder Include="User\Repositories\" />
-    <Folder Include="Wallet\Repositories\" />
   </ItemGroup>
 
 </Project>

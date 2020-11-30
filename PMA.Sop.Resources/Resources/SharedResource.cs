@@ -112,5 +112,7 @@ namespace PMA.Sop.Resources.Resources
         public const string ForgetPassword = nameof(ForgetPassword);
         public const string ForgetPasswordText = nameof(ForgetPasswordText);
         public const string SendBtn = nameof(SendBtn);
+        public const string Wallet = nameof(Wallet);
+        public const string Panel = nameof(Panel);
     }
 }

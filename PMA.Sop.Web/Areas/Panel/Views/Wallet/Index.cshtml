@@ -1,0 +1,19 @@
+﻿@inject IResourceManager _resourceManager
+@{
+    ViewData["Title"] = _resourceManager[SharedResource.Wallet];
+}
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/">@_resourceManager[SharedResource.HomePage]</a></li>
+                        <li><a href="#">@_resourceManager[SharedResource.Panel]</a></li>
+                        <li>@_resourceManager[SharedResource.Wallet]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
