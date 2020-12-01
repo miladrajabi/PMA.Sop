@@ -61,7 +61,7 @@ namespace PMA.Sop.Web
             #region Authentication
 
             services.AddDbContext<AccDbContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("DefaultCnn"),
+                options.UseSqlServer(_configuration.GetConnectionString("IdentityDefaultCnn"),
                     builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()

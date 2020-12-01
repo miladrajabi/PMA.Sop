@@ -11,6 +11,10 @@ namespace PMA.Sop.Framework.Domain
 
         [Column(TypeName = "DateTime")]
         public DateTime CreateDate { get; set; }
+        [Column(TypeName = "DateTime")]
+        public DateTime? ModifiedDate { get; set; }
 
+        public int? CreatorUserId { get; set; }
+        public int? ModifiedId { get; set; }
     }
 }

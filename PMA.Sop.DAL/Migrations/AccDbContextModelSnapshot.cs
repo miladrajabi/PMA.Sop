@@ -39,7 +39,7 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims");
+                    b.ToTable("RoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
@@ -62,7 +62,7 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims");
+                    b.ToTable("UserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
@@ -83,7 +83,7 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins");
+                    b.ToTable("UserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<int>", b =>
@@ -98,7 +98,7 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles");
+                    b.ToTable("UserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
@@ -117,7 +117,7 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens");
+                    b.ToTable("UserTokens");
                 });
 
             modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationRole", b =>
@@ -149,7 +149,7 @@ namespace PMA.Sop.DAL.Migrations
                         .HasDatabaseName("RoleNameIndex")
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
-                    b.ToTable("AspNetRoles");
+                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUser", b =>
@@ -222,7 +222,281 @@ namespace PMA.Sop.DAL.Migrations
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUserAddress", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("DistrictId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("ModifiedId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Plaque")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalAddress")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecipientFirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("RecipientIsSelf")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("RecipientLastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecipientNationalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RecipientPhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Unit")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("DistrictId")
+                        .IsUnique();
+
+                    b.ToTable("ApplicationUserAddresses");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUserInfo", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("Birthdate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool?>("Gender")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("ModifiedId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NationalCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId")
+                        .IsUnique();
+
+                    b.ToTable("ApplicationUserInfos");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Wallet.Entities.Wallet", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("ApplicationUserId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsPay")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("ModifiedId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("WalletTypeId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("WalletTypeId");
+
+                    b.ToTable("Wallet");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Wallet.Entities.WalletType", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("EnglishTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("WalletType");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.District", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("EnglishTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ProvinceId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("ProvinceId1")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProvinceId1");
+
+                    b.ToTable("Districts");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.Province", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("EnglishTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<int>("ZoneId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("ZoneId1")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ZoneId1");
+
+                    b.ToTable("Provinces");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.Zone", b =>
+                {
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("EnglishTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Zones");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -274,6 +548,102 @@ namespace PMA.Sop.DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUserAddress", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("ApplicationUserAddress")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PMA.Sop.Domain.Zone.Entities.District", "District")
+                        .WithOne("ApplicationUserAddress")
+                        .HasForeignKey("PMA.Sop.Domain.User.Entities.ApplicationUserAddress", "DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("District");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUserInfo", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
+                        .WithOne("ApplicationUserInfo")
+                        .HasForeignKey("PMA.Sop.Domain.User.Entities.ApplicationUserInfo", "ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Wallet.Entities.Wallet", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("Wallets")
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PMA.Sop.Domain.Wallet.Entities.WalletType", "WalletType")
+                        .WithMany("Wallets")
+                        .HasForeignKey("WalletTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("WalletType");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.District", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.Zone.Entities.Province", "Province")
+                        .WithMany("District")
+                        .HasForeignKey("ProvinceId1");
+
+                    b.Navigation("Province");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.Province", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.Zone.Entities.Zone", "Zone")
+                        .WithMany("Province")
+                        .HasForeignKey("ZoneId1");
+
+                    b.Navigation("Zone");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUser", b =>
+                {
+                    b.Navigation("ApplicationUserAddress");
+
+                    b.Navigation("ApplicationUserInfo");
+
+                    b.Navigation("Wallets");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Wallet.Entities.WalletType", b =>
+                {
+                    b.Navigation("Wallets");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.District", b =>
+                {
+                    b.Navigation("ApplicationUserAddress");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.Province", b =>
+                {
+                    b.Navigation("District");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.Zone", b =>
+                {
+                    b.Navigation("Province");
                 });
 #pragma warning restore 612, 618
         }

@@ -5,11 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Sample\Commands\" />
+    <Folder Include="Sample\Entities\" />
+    <Folder Include="Sample\Repositories\" />
+    <Folder Include="Sample\Queries\" />
     <Folder Include="User\Commands\" />
     <Folder Include="User\Repositories\" />
     <Folder Include="User\Queries\" />
     <Folder Include="Wallet\Commands\" />
     <Folder Include="Wallet\Queries\" />
+    <Folder Include="Zone\Commands\" />
+    <Folder Include="Zone\Queries\" />
+    <Folder Include="Zone\Repositories\" />
   </ItemGroup>
 
   <ItemGroup>

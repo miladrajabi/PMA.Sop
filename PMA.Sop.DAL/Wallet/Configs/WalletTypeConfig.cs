@@ -13,8 +13,8 @@ namespace PMA.Sop.DAL.Wallet.Configs
     {
         public void Configure(EntityTypeBuilder<WalletType> builder)
         {
-            builder.Property(c => c.Id).ValueGeneratedNever();
-            builder.Property(c => c.TypeTitle).IsRequired().HasMaxLength(200);
+            //builder.Property(c => c.Code).ValueGeneratedNever();
+            //builder.Property(c => c.Title).IsRequired().HasMaxLength(200);
 
 
         }
