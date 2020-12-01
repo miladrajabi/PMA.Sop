@@ -150,6 +150,9 @@
   <data name="AppName" xml:space="preserve">
     <value>نام جدید برنامه</value>
   </data>
+  <data name="Birthdate" xml:space="preserve">
+    <value>تاریخ تولد</value>
+  </data>
   <data name="BtnViewText" xml:space="preserve">
     <value>نمایش اثر</value>
   </data>
@@ -384,6 +387,9 @@
   <data name="SendBtn" xml:space="preserve">
     <value>ارسال</value>
   </data>
+  <data name="Sex" xml:space="preserve">
+    <value>جنسیت</value>
+  </data>
   <data name="ShortDescription" xml:space="preserve">
     <value>توضیحات مختصر</value>
   </data>
@@ -423,8 +429,5 @@
     &lt;/ul&gt;
      در این راستا تصمیم داریم با راه اندازی یک سایت حرفه‌ای به معرفی صنایع دستی ایرانی و هنرمندان عزیز کشورمان اقدام نماییم.
 &lt;/div&gt;</value>
-  </data>
-  <data name="YourCart" xml:space="preserve">
-    <value>سبد خرید شما</value>
   </data>
 </root>

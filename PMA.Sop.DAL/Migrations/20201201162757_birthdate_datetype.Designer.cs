@@ -10,8 +10,8 @@ using PMA.Sop.DAL.Context;
 namespace PMA.Sop.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201201161127_isRequierd_title_Hc")]
-    partial class isRequierd_title_Hc
+    [Migration("20201201162757_birthdate_datetype")]
+    partial class birthdate_datetype
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -300,7 +300,7 @@ namespace PMA.Sop.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Birthdate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DateTime");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("DateTime");

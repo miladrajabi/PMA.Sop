@@ -1,0 +1,75 @@
+﻿@inject IResourceManager _resourceManager
+@model ApplicationUserInfoDto
+@{
+    ViewData["Title"] = _resourceManager[SharedResource.Login];
+}
+<div class="breadcrumbs_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="breadcrumb_content">
+                    <ul>
+                        <li><a href="/">@_resourceManager[SharedResource.HomePage]</a></li>
+                        <li>@_resourceManager[SharedResource.Panel]</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="main_content_area">
+    <div class="container">
+        <div class="account_dashboard">
+            <div class="row">
+                <partial name="_sidebar" />
+                <div class="col-sm-12 col-md-9 col-lg-9">
+
+                    <div class="tab-content dashboard_content">
+                        <div class="tab-pane fade show active" id="orders">
+                            <h3>سبد خرید</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>خرید</th>
+                                            <th>داده</th>
+                                            <th>وضعیت</th>
+                                            <th>جمع کل</th>
+                                            <th>فروشگاه</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>5 آبان 1399</td>
+                                            <td><span class="success">تمام</span></td>
+                                            <td>25000 تومن</td>
+                                            <td><a href="cart.html" class="view">مشاهده</a></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>5 آبان 1399</td>
+                                            <td>موجود</td>
+                                            <td>158000 تومن </td>
+                                            <td><a href="cart.html" class="view">مشاهده</a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("a").removeClass("active");
+            $("#userInfo").addClass("active");
+        });
+    </script>
+}

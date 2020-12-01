@@ -16,5 +16,11 @@ namespace PMA.Sop.Framework.Domain
 
         public int? CreatorUserId { get; set; }
         public int? ModifiedId { get; set; }
+
+        public bool IsRemoved { get; set; } = false;
+
+        [Column(TypeName = "DateTime")]
+        public DateTime? RemoveTime { get; set; }
+
     }
 }

@@ -28,7 +28,6 @@
   <ItemGroup>
     <Folder Include="Sample\Configs\" />
     <Folder Include="Sample\Repositories\" />
-    <Folder Include="User\Repositories\" />
   </ItemGroup>
 
 </Project>

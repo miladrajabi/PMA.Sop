@@ -9,7 +9,7 @@ using PMA.Sop.DAL.Context;
 
 namespace PMA.Sop.DAL.Migrations
 {
-    [DbContext(typeof(AccDbContext))]
+    [DbContext(typeof(DatabaseContext))]
     [Migration("20201201160743_init")]
     partial class init
     {

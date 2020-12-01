@@ -15,6 +15,8 @@ using PMA.Sop.Core.Services;
 using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.DAL.Context;
 using PMA.Sop.Domain.User.Entities;
+using PMA.Sop.Framework.Commands;
+using PMA.Sop.Framework.Queries;
 using PMA.Sop.Framework.Resources;
 using PMA.Sop.Framework.Resources.Interface;
 using PMA.Sop.Resources.Resources;
@@ -49,23 +51,25 @@ namespace PMA.Sop.Web
                         factory.Create(typeof(SharedResource));
                 });
             services.AddAntiforgery();
+            services.AddTransient<CommandDispatcher>();
+            services.AddTransient<QueryDispatcher>();
 
             services.AddTransient<IResourceManager, ResourceManager<SharedResource>>();
             services.AddTransient<IEmailService>(provider => new EmailService(mailAddress, mailPassword));
             services.AddTransient<IViewRenderService, RenderViewToString>();
 
-            services.AddDbContext<DatabaseContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("DefaultCnn"),
-                    builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
+            //services.AddDbContext<DatabaseContext>(options =>
+            //    options.UseSqlServer(_configuration.GetConnectionString("DefaultCnn"),
+            //        builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
 
             #region Authentication
 
-            services.AddDbContext<AccDbContext>(options =>
+            services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(_configuration.GetConnectionString("IdentityDefaultCnn"),
                     builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
 
             services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<AccDbContext>()
+                .AddEntityFrameworkStores<DatabaseContext>()
                 .AddDefaultTokenProviders()
                 .AddErrorDescriber<CustomIdentityError>();
 

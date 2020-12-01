@@ -8,7 +8,7 @@ using PMA.Sop.DAL.Context;
 
 namespace PMA.Sop.DAL.Migrations
 {
-    [DbContext(typeof(AccDbContext))]
+    [DbContext(typeof(DatabaseContext))]
     partial class AccDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -298,7 +298,7 @@ namespace PMA.Sop.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("Birthdate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("DateTime");
 
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("DateTime");

@@ -114,5 +114,7 @@ namespace PMA.Sop.Resources.Resources
         public const string SendBtn = nameof(SendBtn);
         public const string Wallet = nameof(Wallet);
         public const string Panel = nameof(Panel);
+        public const string Birthdate = nameof(Birthdate);
+        public const string Sex = nameof(Sex);
     }
 }

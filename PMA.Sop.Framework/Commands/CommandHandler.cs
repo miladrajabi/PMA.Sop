@@ -1,4 +1,5 @@
-﻿using PMA.Sop.Framework.Resources.Interface;
+﻿using System.Threading.Tasks;
+using PMA.Sop.Framework.Resources.Interface;
 
 namespace PMA.Sop.Framework.Commands
 {
@@ -72,5 +73,6 @@ namespace PMA.Sop.Framework.Commands
             _result.AddError(_resourceManager[error, arguments]);
         }
         public abstract CommandResult Handle(TCommand command);
+        public abstract  Task<CommandResult> HandleAsync(TCommand command);
     }
 }
