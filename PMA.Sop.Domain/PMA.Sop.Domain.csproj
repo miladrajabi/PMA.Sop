@@ -9,7 +9,6 @@
     <Folder Include="Sample\Entities\" />
     <Folder Include="Sample\Repositories\" />
     <Folder Include="Sample\Queries\" />
-    <Folder Include="User\Queries\" />
     <Folder Include="Wallet\Commands\" />
     <Folder Include="Wallet\Queries\" />
     <Folder Include="Zone\Commands\" />
@@ -18,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ardalis.Specification" Version="4.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
   </ItemGroup>
 

@@ -3,7 +3,7 @@ using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Domain.Wallet.Entities;
 using PMA.Sop.Domain.Zone.Entities;
 
-namespace PMA.Sop.Core.Interfaces
+namespace PMA.Sop.ApplicationServices.Interfaces
 {
     public interface IDatabaseContext
     {

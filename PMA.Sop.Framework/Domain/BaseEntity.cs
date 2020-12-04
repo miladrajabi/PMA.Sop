@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PMA.Sop.Framework.Domain
 {
-    public class BaseEntity
+    public class BaseEntity <TKey>
     {
         [Key]
-        public long Id { get; set; }
+        public virtual TKey Id { get; set; }
 
         [Column(TypeName = "DateTime")]
         public DateTime CreateDate { get; set; }

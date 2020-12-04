@@ -1,6 +1,9 @@
 ﻿@inject IResourceManager _resourceManager
 @using System.Security.Claims
 @model PMA.Sop.ApplicationServices.DTOs.User.ApplicationUserInfoDto
+@{
+    var readOnly = Model.IsUpdated ? "readonly" : string.Empty;
+}
 
 @{
     ViewData["Title"] = _resourceManager[SharedResource.AccountInfo];
@@ -63,7 +66,7 @@
                                             <div class="row">
                                                 <div class="form-group">
                                                     <label asp-for="NationalCode"></label>
-                                                    <input asp-for="NationalCode" type="number" class="form-control" placeholder="@_resourceManager[SharedResource.NationalCode]" aria-describedby="email-address">
+                                                    <input asp-for="NationalCode" type="number" class="form-control" placeholder="@_resourceManager[SharedResource.NationalCode]" aria-describedby="email-address" readonly="@readOnly">
                                                     <span asp-validation-for="NationalCode" class="text-danger"></span>
                                                 </div>
                                             </div>
@@ -78,6 +81,7 @@
                                             </div>
                                             <br>
                                             <input type="hidden" asp-for="ApplicationUserId" />
+                                            <input type="hidden" asp-for="IsUpdated" />
                                             <div class="row">
                                                 <div class="login_submit">
                                                     <button class="btn btn-outline-success" type="submit">
@@ -104,14 +108,14 @@
             $("a").removeClass("active");
             $("#userInfo").addClass("active");
 
-                            //$('#date4').MdPersianDateTimePicker({
-                            //    targetTextSelector: '#inputDate4',
-                            //    fromDate: true,
-                            //    enableTimePicker: true,
-                            //    groupId: 'rangeSelector1',
-                            //    dateFormat: 'yyyy-MM-dd HH:mm:ss',
-                            //    textFormat: 'yyyy-MM-dd HH:mm:ss',
-                            //});
+                                        //$('#date4').MdPersianDateTimePicker({
+                                        //    targetTextSelector: '#inputDate4',
+                                        //    fromDate: true,
+                                        //    enableTimePicker: true,
+                                        //    groupId: 'rangeSelector1',
+                                        //    dateFormat: 'yyyy-MM-dd HH:mm:ss',
+                                        //    textFormat: 'yyyy-MM-dd HH:mm:ss',
+                                        //});
     </script>
 
 }

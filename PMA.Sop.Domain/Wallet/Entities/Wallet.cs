@@ -5,7 +5,7 @@ using PMA.Sop.Framework.Domain;
 
 namespace PMA.Sop.Domain.Wallet.Entities
 {
-    public class Wallet : BaseEntity
+    public class Wallet : BaseEntity<long>
     {
         public long WalletTypeId { get; set; }
         public int ApplicationUserId { get; set; }

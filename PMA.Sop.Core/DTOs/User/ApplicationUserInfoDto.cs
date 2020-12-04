@@ -27,5 +27,7 @@ namespace PMA.Sop.ApplicationServices.DTOs.User
 
         [DisplayName(SharedResource.Sex)]
         public string Gender { get; set; }
+
+        public bool IsUpdated { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using PMA.Sop.Framework.Domain;
 
 namespace PMA.Sop.Domain.User.Entities
 {
-    public class ApplicationUserAddress : BaseEntity
+    public class ApplicationUserAddress : BaseEntity<long>
     {
         public int ApplicationUserId { get; set; }
 

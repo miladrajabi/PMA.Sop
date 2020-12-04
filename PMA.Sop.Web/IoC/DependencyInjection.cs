@@ -10,14 +10,19 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PMA.Sop.ApplicationServices.Convertors;
 using PMA.Sop.ApplicationServices.User.Command;
+using PMA.Sop.ApplicationServices.User.Queries;
 using PMA.Sop.Core.Convertors.Interfaces;
 using PMA.Sop.Core.Services;
 using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.DAL.Context;
 using PMA.Sop.DAL.Context.UOW;
+using PMA.Sop.DAL.User.Repositories;
 using PMA.Sop.Domain.SeedWork;
 using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Entities;
+using PMA.Sop.Domain.User.Queries;
+using PMA.Sop.Domain.User.Repositories;
+using PMA.Sop.Domain.User.ViewModel;
 using PMA.Sop.Framework.Commands;
 using PMA.Sop.Framework.Queries;
 using PMA.Sop.Framework.Resources;
@@ -47,8 +52,21 @@ namespace PMA.Sop.Web.IoC
             services.AddTransient<IViewRenderService, RenderViewToString>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+            #region Repository
+            services.AddTransient<IApplicationUserInfoCommandRepository, ApplicationUserInfoCommandRepository>();
+
+
+            #endregion
+
             #region MediatR
+
+
             services.AddTransient<IRequestHandler<AddApplicationUserInfoCommand, int>, UserInfoCommandHandler>();
+            services.AddTransient<IRequestHandler<UpdateApplicationUserInfoCommand, int>, UserInfoCommandHandler>();
+
+            services.AddTransient<IRequestHandler<GetApplicationUserInfoQuery, GetApplicationUserInfoVM>, UserInfoQueryHandler>();
+
+            //services.AddTransient<CreateUserInfoCommandValidator>();
             services.AddMediatR(typeof(Startup));
             #endregion
 

@@ -1,28 +1,33 @@
-﻿using System.Threading.Tasks;
+﻿using System;
 using PMA.Sop.DAL.Context;
-using PMA.Sop.Domain.SeedWork;
+using PMA.Sop.DAL.Data;
+using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Domain.User.Repositories;
 
 namespace PMA.Sop.DAL.User.Repositories
 {
-    public class ApplicationUserInfoCommandRepository : IApplicationUserInfoCommandRepository
+    public class ApplicationUserInfoCommandRepository : EfRepository<ApplicationUserInfo>, IApplicationUserInfoCommandRepository
     {
-        private readonly DatabaseContext _databaseContext;
 
-        public ApplicationUserInfoCommandRepository(DatabaseContext databaseContext)
+        public ApplicationUserInfoCommandRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
-            _databaseContext = databaseContext;
         }
 
         public void Add(ApplicationUserInfo command)
         {
-            _databaseContext.ApplicationUserInfos.Add(command);
+            DbContext.ApplicationUserInfos.Add(command);
         }
 
-        public async Task AddAsync(ApplicationUserInfo command)
+        public void UpdateRep(ApplicationUserInfo entity, UpdateApplicationUserInfoCommand model)
         {
-            await _databaseContext.ApplicationUserInfos.AddAsync(command);
+            entity.Gender = model.Gender;
+            entity.FirstName = model.FirstName;
+            entity.LastName = model.LastName;
+            entity.Birthdate = model.Birthdate;
+            entity.ModifiedId = model.ModifiedId;
+            entity.ModifiedDate = DateTime.Now;
+
         }
     }
 }
