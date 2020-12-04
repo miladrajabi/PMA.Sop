@@ -9,7 +9,7 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
 {
     [Area(nameof(Panel))]
     [Route("[area]/[controller]/[action]")]
-    public class WalletController : BaseController
+    public class WalletController : Controller
     {
         public IActionResult Index()
         {

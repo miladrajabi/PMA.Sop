@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMA.Sop.DAL.Context;
 
 namespace PMA.Sop.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    partial class AccDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201203162114_add_new_field_remove")]
+    partial class add_new_field_remove
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

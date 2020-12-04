@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace PMA.Sop.Framework.Commands
+namespace PMA.Sop.ApplicationServices.DTOs
 {
-    public interface ICommand
+    public class BaseModelDto
     {
-
-    }
-
-    public class BaseCommandEntity
-    {
+        public long Id { get; set; }
 
         public DateTime CreateDate { get; set; }
         public DateTime? ModifiedDate { get; set; }

@@ -120,6 +120,9 @@
   <data name="AboutUs" xml:space="preserve">
     <value>درباره ما</value>
   </data>
+  <data name="AccountInfo" xml:space="preserve">
+    <value>جزئیات حساب</value>
+  </data>
   <data name="Actions" xml:space="preserve">
     <value>اعمال</value>
   </data>

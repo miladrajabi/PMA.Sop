@@ -2,6 +2,8 @@
 using PMA.Sop.Framework.Commands;
 using PMA.Sop.Framework.Queries;
 using PMA.Sop.Framework.Resources.Interface;
+using Microsoft.AspNetCore.Authorization;
+using MediatR;
 
 namespace PMA.Sop.Framework.Web
 {
@@ -11,16 +13,20 @@ namespace PMA.Sop.Framework.Web
         protected readonly IResourceManager ResourceManager;
         protected readonly QueryDispatcher QueryDispatcher;
 
-        protected BaseController(IResourceManager resourceManager, CommandDispatcher commandDispatcher, QueryDispatcher queryDispatcher)
+        protected IMediator Mediator;
+
+
+        protected BaseController(IResourceManager resourceManager, CommandDispatcher commandDispatcher, QueryDispatcher queryDispatcher, IMediator mediator)
         {
             ResourceManager = resourceManager;
             CommandDispatcher = commandDispatcher;
             QueryDispatcher = queryDispatcher;
+            Mediator = mediator;
         }
 
-        protected BaseController()
+        protected BaseController(IResourceManager resourceManager, CommandDispatcher commandDispatcher, QueryDispatcher queryDispatcher)
         {
-            ;
+            throw new System.NotImplementedException();
         }
     }
 }

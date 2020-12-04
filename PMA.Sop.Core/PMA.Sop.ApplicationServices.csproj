@@ -6,9 +6,15 @@
 
   <ItemGroup>
     <Folder Include="Security\" />
+    <Folder Include="User\Queries\" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="FluentValidation" Version="9.3.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="9.3.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" />
   </ItemGroup>
 

@@ -1,7 +1,9 @@
 ﻿@inject IResourceManager _resourceManager
-@model ApplicationUserInfoDto
+@using System.Security.Claims
+@model PMA.Sop.ApplicationServices.DTOs.User.ApplicationUserInfoDto
+
 @{
-    ViewData["Title"] = _resourceManager[SharedResource.Login];
+    ViewData["Title"] = _resourceManager[SharedResource.AccountInfo];
 }
 <div class="breadcrumbs_area">
     <div class="container">
@@ -10,7 +12,8 @@
                 <div class="breadcrumb_content">
                     <ul>
                         <li><a href="/">@_resourceManager[SharedResource.HomePage]</a></li>
-                        <li>@_resourceManager[SharedResource.Panel]</li>
+                        <li><a href="#">@_resourceManager[SharedResource.Panel]</a></li>
+                        <li>@_resourceManager[SharedResource.AccountInfo]</li>
                     </ul>
                 </div>
             </div>
@@ -26,36 +29,66 @@
                 <div class="col-sm-12 col-md-9 col-lg-9">
 
                     <div class="tab-content dashboard_content">
-                        <div class="tab-pane fade show active" id="orders">
-                            <h3>سبد خرید</h3>
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>خرید</th>
-                                            <th>داده</th>
-                                            <th>وضعیت</th>
-                                            <th>جمع کل</th>
-                                            <th>فروشگاه</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>5 آبان 1399</td>
-                                            <td><span class="success">تمام</span></td>
-                                            <td>25000 تومن</td>
-                                            <td><a href="cart.html" class="view">مشاهده</a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>5 آبان 1399</td>
-                                            <td>موجود</td>
-                                            <td>158000 تومن </td>
-                                            <td><a href="cart.html" class="view">مشاهده</a></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="tab-pane show active" id="account-details">
+                            <h3>@_resourceManager[SharedResource.AccountInfo]</h3>
+                            <div class="login">
+                                <div class="login_form_container">
+                                    <div class="account_login_form">
+                                        <form asp-action="AddApplicationUserInfo" asp-controller="AccountPanel" method="post">
+                                            <div class="row">
+                                                <div class="input-radio">
+                                                    <label asp-for="Gender"></label>
+                                                    <input id="Male" type="radio" asp-for="Gender" value="Male" /><label for="Male">مرد</label>
+                                                    <input id="Female" type="radio" asp-for="Gender" value="Female" /> <label for="Female">زن</label>
+                                                    <span asp-validation-for="Gender" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label asp-for="FirstName"></label>
+                                                    <input asp-for="FirstName" type="text" class="form-control" placeholder="@_resourceManager[SharedResource.FirstName]" aria-describedby="email-address">
+                                                    <span asp-validation-for="FirstName" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label asp-for="LastName"></label>
+                                                    <input asp-for="LastName" type="text" class="form-control" placeholder="@_resourceManager[SharedResource.LastName]" aria-describedby="email-address">
+                                                    <span asp-validation-for="LastName" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <label asp-for="NationalCode"></label>
+                                                    <input asp-for="NationalCode" type="number" class="form-control" placeholder="@_resourceManager[SharedResource.NationalCode]" aria-describedby="email-address">
+                                                    <span asp-validation-for="NationalCode" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="row">
+                                                <div class="form-group">
+
+                                                    <label asp-for="Birthdate"></label>
+                                                    <input id="birthdatePicker" asp-for="Birthdate" type="date" class="form-control" placeholder="@_resourceManager[SharedResource.Birthdate]" aria-label="date2">
+                                                    <span asp-validation-for="Birthdate" class="text-danger"></span>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <input type="hidden" asp-for="ApplicationUserId" />
+                                            <div class="row">
+                                                <div class="login_submit">
+                                                    <button class="btn btn-outline-success" type="submit">
+                                                        <span class="fa fa-check-circle"></span>
+                                                        @_resourceManager[SharedResource.Save]
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -67,9 +100,18 @@
 </section>
 @section Scripts{
     <script>
-        $(document).ready(function () {
+        $('document').ready(function () {
             $("a").removeClass("active");
             $("#userInfo").addClass("active");
-        });
+
+                            //$('#date4').MdPersianDateTimePicker({
+                            //    targetTextSelector: '#inputDate4',
+                            //    fromDate: true,
+                            //    enableTimePicker: true,
+                            //    groupId: 'rangeSelector1',
+                            //    dateFormat: 'yyyy-MM-dd HH:mm:ss',
+                            //    textFormat: 'yyyy-MM-dd HH:mm:ss',
+                            //});
     </script>
+
 }

@@ -116,5 +116,6 @@ namespace PMA.Sop.Resources.Resources
         public const string Panel = nameof(Panel);
         public const string Birthdate = nameof(Birthdate);
         public const string Sex = nameof(Sex);
+        public const string AccountInfo = nameof(AccountInfo);
     }
 }

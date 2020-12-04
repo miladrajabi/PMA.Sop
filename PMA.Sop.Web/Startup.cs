@@ -1,25 +1,31 @@
 using System;
-using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using PMA.Sop.Core.Convertors;
+using PMA.Sop.ApplicationServices.Convertors;
 using PMA.Sop.Core.Convertors.Interfaces;
 using PMA.Sop.Core.Services;
 using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.DAL.Context;
+using PMA.Sop.DAL.Context.UOW;
+using PMA.Sop.Domain.SeedWork;
+using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Framework.Commands;
 using PMA.Sop.Framework.Queries;
 using PMA.Sop.Framework.Resources;
 using PMA.Sop.Framework.Resources.Interface;
 using PMA.Sop.Resources.Resources;
+using MediatR;
+using PMA.Sop.ApplicationServices.User.Command;
+using PMA.Sop.Web.IoC;
+
 
 namespace PMA.Sop.Web
 {
@@ -36,8 +42,8 @@ namespace PMA.Sop.Web
 
         public void ConfigureServices(IServiceCollection services)
         {
-            var mailAddress = _configuration.GetValue<string>("EmailInfo:MailAddress");
-            var mailPassword = _configuration.GetValue<string>("EmailInfo:MailPassword");
+            //var assembly = AppDomain.CurrentDomain.Load("Data");
+            
             services.AddLocalization(opt => opt.ResourcesPath = "Resources");
             //var policy = new AuthorizationPolicyBuilder()
             //    .RequireAuthenticatedUser()
@@ -51,61 +57,8 @@ namespace PMA.Sop.Web
                         factory.Create(typeof(SharedResource));
                 });
             services.AddAntiforgery();
-            services.AddTransient<CommandDispatcher>();
-            services.AddTransient<QueryDispatcher>();
-
-            services.AddTransient<IResourceManager, ResourceManager<SharedResource>>();
-            services.AddTransient<IEmailService>(provider => new EmailService(mailAddress, mailPassword));
-            services.AddTransient<IViewRenderService, RenderViewToString>();
-
-            //services.AddDbContext<DatabaseContext>(options =>
-            //    options.UseSqlServer(_configuration.GetConnectionString("DefaultCnn"),
-            //        builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
-
-            #region Authentication
-
-            services.AddDbContext<DatabaseContext>(options =>
-                options.UseSqlServer(_configuration.GetConnectionString("IdentityDefaultCnn"),
-                    builder => builder.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery)));
-
-            services.AddIdentity<ApplicationUser, ApplicationRole>()
-                .AddEntityFrameworkStores<DatabaseContext>()
-                .AddDefaultTokenProviders()
-                .AddErrorDescriber<CustomIdentityError>();
-
-            services.Configure<IdentityOptions>(options =>
-            {
-                // Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 1;
-
-                // Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                options.Lockout.MaxFailedAccessAttempts = 5;
-                options.Lockout.AllowedForNewUsers = true;
-
-                // User settings.
-                options.User.AllowedUserNameCharacters =
-                    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
-                options.User.RequireUniqueEmail = true;
-            });
-
-            services.ConfigureApplicationCookie(options =>
-            {
-                // Cookie settings
-                options.Cookie.HttpOnly = true;
-                options.ExpireTimeSpan = TimeSpan.FromMinutes(7200);
-
-                options.LoginPath = "/Login";
-                options.LogoutPath = "/Logout";
-                options.AccessDeniedPath = "/AccessDenied";
-                options.SlidingExpiration = true;
-            });
-            #endregion
+            services.AddIoc(_configuration);
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

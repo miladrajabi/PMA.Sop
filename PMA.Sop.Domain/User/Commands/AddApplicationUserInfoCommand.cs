@@ -1,9 +1,10 @@
 ﻿using System;
+using MediatR;
 using PMA.Sop.Framework.Commands;
 
 namespace PMA.Sop.Domain.User.Commands
 {
-    public class AddApplicationUserInfoCommand : ICommand
+    public class AddApplicationUserInfoCommand : BaseCommandEntity, IRequest<int>
     {
         public int ApplicationUserId { get; set; }
         public string FirstName { get; set; }

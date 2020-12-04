@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="9.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
@@ -33,7 +37,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PMA.Sop.Core\PMA.Sop.Core.csproj" />
+    <ProjectReference Include="..\PMA.Sop.Core\PMA.Sop.ApplicationServices.csproj" />
     <ProjectReference Include="..\PMA.Sop.DAL\PMA.Sop.DAL.csproj" />
     <ProjectReference Include="..\PMA.Sop.Domain\PMA.Sop.Domain.csproj" />
     <ProjectReference Include="..\PMA.Sop.Framework\PMA.Sop.Framework.csproj" />

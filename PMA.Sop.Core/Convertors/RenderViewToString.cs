@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 using PMA.Sop.Core.Convertors.Interfaces;
 
-namespace PMA.Sop.Core.Convertors
+namespace PMA.Sop.ApplicationServices.Convertors
 {
     public class RenderViewToString : IViewRenderService
     {
