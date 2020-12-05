@@ -1,29 +1,10 @@
-using System;
-using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using PMA.Sop.ApplicationServices.Convertors;
-using PMA.Sop.Core.Convertors.Interfaces;
-using PMA.Sop.Core.Services;
-using PMA.Sop.Core.Services.Interface;
-using PMA.Sop.DAL.Context;
-using PMA.Sop.DAL.Context.UOW;
-using PMA.Sop.Domain.SeedWork;
-using PMA.Sop.Domain.User.Commands;
-using PMA.Sop.Domain.User.Entities;
-using PMA.Sop.Framework.Commands;
-using PMA.Sop.Framework.Queries;
-using PMA.Sop.Framework.Resources;
-using PMA.Sop.Framework.Resources.Interface;
 using PMA.Sop.Resources.Resources;
-using MediatR;
-using PMA.Sop.ApplicationServices.User.Command;
 using PMA.Sop.Web.IoC;
 
 

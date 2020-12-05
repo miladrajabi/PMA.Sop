@@ -24,17 +24,17 @@ namespace PMA.Sop.DAL.Data
             _dbSet = dbContext.Set<T>();
         }
 
-        public virtual async Task<T> GetByIdAsync<TKey>(TKey id)
+        public virtual async Task<T> GetByIdAsync<TKey>(TKey id, bool asNoTracking = false)
         {
             return await _dbSet.FindAsync(id);
         }
 
-        public virtual async Task<IReadOnlyList<T>> ListAllAsync()
+        public virtual async Task<IReadOnlyList<T>> ListAllAsync(bool asNoTracking = false)
         {
             return await _dbSet.ToListAsync();
         }
 
-        public virtual async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec)
+        public virtual async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec, bool asNoTracking = false)
         {
             var specificationResult = ApplySpecification(spec);
             return await specificationResult.ToListAsync();
@@ -55,19 +55,19 @@ namespace PMA.Sop.DAL.Data
             _dbSet.Remove(entity);
         }
 
-        public virtual async Task<int> CountAsync(ISpecification<T> spec)
+        public virtual async Task<int> CountAsync(ISpecification<T> spec, bool asNoTracking = false)
         {
             var specificationResult = ApplySpecification(spec);
             return await specificationResult.CountAsync();
         }
 
-        public virtual async Task<T> FirstAsync(ISpecification<T> spec)
+        public virtual async Task<T> FirstAsync(ISpecification<T> spec, bool asNoTracking = false)
         {
             var specificationResult = ApplySpecification(spec);
             return await specificationResult.FirstAsync();
         }
 
-        public virtual async Task<T> FirstOrDefaultAsync(ISpecification<T> spec)
+        public virtual async Task<T> FirstOrDefaultAsync(ISpecification<T> spec, bool asNoTracking = false)
         {
             var specificationResult = ApplySpecification(spec);
             return await specificationResult.FirstOrDefaultAsync();
@@ -90,7 +90,7 @@ namespace PMA.Sop.DAL.Data
             return _dbSet.FromSqlRaw(query, parameters);
         }
 
-        private  IQueryable<T> ApplySpecification(ISpecification<T> spec)
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec, bool asNoTracking = false)
         {
             var evaluator = new SpecificationEvaluator<T>();
             return evaluator.GetQuery(_dbSet.AsQueryable(), spec);
