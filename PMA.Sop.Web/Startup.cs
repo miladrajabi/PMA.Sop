@@ -37,6 +37,12 @@ namespace PMA.Sop.Web
                     options.DataAnnotationLocalizerProvider = (type, factory) =>
                         factory.Create(typeof(SharedResource));
                 });
+
+            //services.Configure<RazorViewEngineOptions>(o =>
+            //{
+            //    o.AreaViewLocationFormats.Add("/Areas/{2}/{0}" + RazorViewEngine.ViewExtension);
+            //});
+
             services.AddAntiforgery();
             services.AddIoc(_configuration);
             
@@ -68,11 +74,18 @@ namespace PMA.Sop.Web
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
+                //endpoints.MapControllerRoute(
+                //    name: "areas",
+                //    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                //);
+
+            });
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapControllerRoute(
                     name: "areas",
                     pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
                 );
-
             });
         }
     }

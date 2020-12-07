@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
+using PMA.Sop.ApplicationServices.DTOs.User;
 using PMA.Sop.Core.DTOs.User;
 using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.Domain.User.Entities;

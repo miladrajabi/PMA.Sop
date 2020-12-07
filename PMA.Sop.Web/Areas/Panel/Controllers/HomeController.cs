@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace PMA.Sop.Web.Areas.Panel.Controllers
 {
     [Area(nameof(Panel))]
+    //[Route("[area]/[controller]/[action]")]
     public class HomeController : Controller
     {
         public IActionResult Index()

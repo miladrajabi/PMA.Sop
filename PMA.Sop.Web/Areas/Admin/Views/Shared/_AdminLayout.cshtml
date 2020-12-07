@@ -2,12 +2,51 @@
 
 <html>
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width" />
-    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/admin/images/favicon.ico">
+
+    <title>پنل مدیریت فروشگاه | @ViewBag.Title</title>
+    <link href="~/Admin/css/vendors_css.css" rel="stylesheet" />
+    <link href="~/Admin/css/style.css" rel="stylesheet" />
+    <link href="~/Admin/css/skin_color.css" rel="stylesheet" />
 </head>
-<body>
-    <div>
-        @RenderBody()
+<body class="hold-transition dark-skin sidebar-mini theme-primary fixed rtl">
+    <div class="wrapper">
+
+        @*header*@
+        <partial name="_header" />
+        @*endHeader*@
+
+        @*SideMenu*@
+        <partial name="_sideMenue" />
+        @*SideMenu*@
+
+        <div class="content-wrapper">
+            <div class="container-full">
+
+                @RenderBody()
+            </div>
+        </div>
+
+        @*Footer*@
+        <partial name="_footer" />
+        @*Footer*@
+
     </div>
+    <script src="/Admin/js/vendors.min.js"></script>
+    <script src="/Admin/assets/icons/feather-icons/feather.min.js"></script>
+    <script src="/Admin/assets/vendor_components/easypiechart/dist/jquery.easypiechart.js"></script>
+    <script src="/Admin/assets/vendor_components/apexcharts-bundle/irregular-data-series.js"></script>
+    <script src="/Admin/assets/vendor_components/apexcharts-bundle-rtl/irregular-data-series.js"></script>
+    <script src="/Admin/assets/vendor_components/apexcharts-bundle-rtl/dist/apexcharts.js"></script>
+    <script src="/Admin/assets/vendor_components/datatable/datatables.min.js"></script>
+    <script src="/Admin/js/pages/data-table.js"></script>
+    <script src="/Admin/js/template.js"></script>
+    <script src="/Admin/js/pages/dashboard.js"></script>
+
 </body>
 </html>

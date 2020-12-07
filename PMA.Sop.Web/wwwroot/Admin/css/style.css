@@ -77,18 +77,18 @@ Waves
 /*Body*/
 @import url(color_theme.css);
 @import url(style_rtl.css);
-@import url(../../assets/icons/font-awesome/css/font-awesome.css);
-@import url(../../assets/icons/Ionicons/css/ionicons.css);
-@import url(../../assets/icons/themify-icons/themify-icons.css);
-@import url(../../assets/icons/linea-icons/linea.css);
-@import url(../../assets/icons/glyphicons/glyphicon.css);
-@import url(../../assets/icons/flag-icon-css/css/flag-icon.css);
-@import url(../../assets/icons/material-design-iconic-font/css/materialdesignicons.css);
-@import url(../../assets/icons/simple-line-icons/css/simple-line-icons.css);
-@import url(../../assets/icons/cryptocoins-master/cryptocoins.css);
-@import url(../../assets/icons/weather-icons/css/weather-icons.min.css);
-@import url(../../assets/icons/iconsmind/style.css);
-@import url(../../assets/vendor_components/animate/animate.css);
+@import url(/admin/assets/icons/font-awesome/css/font-awesome.css);
+@import url(/admin/assets/icons/Ionicons/css/ionicons.css);
+@import url(/admin/assets/icons/themify-icons/themify-icons.css);
+@import url(/admin/assets/icons/linea-icons/linea.css);
+@import url(/admin/assets/icons/glyphicons/glyphicon.css);
+@import url(/admin/assets/icons/flag-icon-css/css/flag-icon.css);
+@import url(/admin/assets/icons/material-design-iconic-font/css/materialdesignicons.css);
+@import url(/admin/assets/icons/simple-line-icons/css/simple-line-icons.css);
+@import url(/admin/assets/icons/cryptocoins-master/cryptocoins.css);
+@import url(/admin/assets/icons/weather-icons/css/weather-icons.min.css);
+@import url(/admin/assets/icons/iconsmind/style.css);
+@import url(/admin/assets/vendor_components/animate/animate.css);
 
 html {
   height: 100%;
@@ -19016,7 +19016,7 @@ body .main-header .navbar .nav>li.search-box>a:focus {
   position: relative;
   width: 100%;
   padding: 10px 0 10px;
-  background-image: url(../../images//user-info.jpg);
+  background-image: url(/admin/images//user-info.jpg);
 }
 
 .user-panel:before,

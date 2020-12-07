@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using PMA.Sop.Resources.Resources;
 
-namespace PMA.Sop.Core.DTOs.User
+namespace PMA.Sop.ApplicationServices.DTOs.User
 {
     public class LoginUserDto
     {
