@@ -3,7 +3,7 @@ using PMA.Sop.Framework.Domain;
 
 namespace PMA.Sop.Domain.Zone.Entities
 {
-    public class District : BaseHcEntity
+    public class District : BaseHcEntity<long>
     {
         public int ProvinceId { get; set; }
 

@@ -7,7 +7,7 @@ using PMA.Sop.Framework.Domain;
 
 namespace PMA.Sop.Domain.Wallet.Entities
 {
-    public class WalletType : BaseHcEntity
+    public class WalletType : BaseHcEntity<long>
     {
 
         #region Relations

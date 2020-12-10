@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PMA.Sop.Framework.Domain
 {
-    public class BaseHcEntity
+    public class BaseHcEntity<TKey>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long Id { get; set; }
+        public TKey Id { get; set; }
 
         [MaxLength(200)]
         [Column(TypeName = "nvarchar(200)")]

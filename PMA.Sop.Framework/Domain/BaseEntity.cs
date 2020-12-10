@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PMA.Sop.Framework.Domain
 {
-    public class BaseEntity <TKey>
+    public class BaseEntity<TKey>
     {
         [Key]
         public virtual TKey Id { get; set; }
@@ -21,6 +21,8 @@ namespace PMA.Sop.Framework.Domain
 
         [Column(TypeName = "DateTime")]
         public DateTime? RemoveTime { get; set; }
+
+
 
     }
 }

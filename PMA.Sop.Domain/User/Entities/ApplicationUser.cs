@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Identity;
+using PMA.Sop.Domain.Product.Entities;
 
 namespace PMA.Sop.Domain.User.Entities
 {
@@ -20,6 +20,10 @@ namespace PMA.Sop.Domain.User.Entities
         public virtual ApplicationUserInfo ApplicationUserInfo { get; set; }
 
         public ICollection<ApplicationUserAddress> ApplicationUserAddress { get; set; }
+
+        public ICollection<ProductFeature> ProductFeatures { get; set; }
+        public ICollection<Product.Entities.Product> Products { get; set; }
+        public ICollection<Category> Categories { get; set; }
 
         #endregion
 

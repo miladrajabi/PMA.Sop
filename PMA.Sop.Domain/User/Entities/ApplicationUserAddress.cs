@@ -19,7 +19,6 @@ namespace PMA.Sop.Domain.User.Entities
         public long DistrictId { get; set; }
 
         #region Recipient
-
         public string RecipientFirstName { get; set; }
         public string RecipientLastName { get; set; }
         public string RecipientPhoneNumber { get; set; }
@@ -27,10 +26,8 @@ namespace PMA.Sop.Domain.User.Entities
         #endregion
 
         #region  RelationShips
-
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual District District { get; set; }
-
         #endregion
     }
 }
