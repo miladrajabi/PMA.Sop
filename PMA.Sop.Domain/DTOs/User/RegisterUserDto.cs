@@ -1,28 +1,24 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using PMA.Sop.Resources.Resources;
 
-namespace PMA.Sop.ApplicationServices.DTOs.User
+namespace PMA.Sop.Domain.DTOs.User
 {
-    public class LoginUserDto
+    public class RegisterUserDto
     {
         [DisplayName(SharedResource.Email)]
         [EmailAddress(ErrorMessage = SharedResource.EmailError)]
         [Required(ErrorMessage = SharedResource.Required)]
         public string Email { get; set; }
 
-        [DataType(DataType.Password)]
-        [DisplayName(SharedResource.Password)]
+        [DisplayName(SharedResource.Phone)]
+        [Phone(ErrorMessage = SharedResource.PhoneError)]
+        //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = SharedResource.PhoneError)]
+        [DataType(DataType.PhoneNumber)]
         [Required(ErrorMessage = SharedResource.Required)]
-        public string Password { get; set; }
+        public string PhoneNumber { get; set; }
 
-        public bool RememberMe { get; set; }
-
-        public string ReturnUrl { get; set; }
-    }
-
-    public class ResetPasswordDto
-    {
         [DataType(DataType.Password)]
         [DisplayName(SharedResource.Password)]
         [Required(ErrorMessage = SharedResource.Required)]
@@ -34,7 +30,6 @@ namespace PMA.Sop.ApplicationServices.DTOs.User
         [Required(ErrorMessage = SharedResource.Required)]
         public string RePassword { get; set; }
 
-        public string UserId { get; set; }
-        public string TokenId { get; set; }
+        public DateTime RegisteredDate { get; set; }
     }
 }

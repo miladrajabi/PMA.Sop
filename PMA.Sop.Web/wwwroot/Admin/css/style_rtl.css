@@ -6,8 +6,8 @@ File: rtl scss
 
 @font-face {
   font-family: "iransans";
-  src: url("/admin/assets/fonts/IRANSansWeb_Light.woff2") format("woff2");
-  src: url("/admin/assets/fonts/IRANSansWeb_Light.woff") format("woff");
+  src: url("/Admin/assets/fonts/IRANSansWeb_Light.woff2") format("woff2");
+  src: url("/Admin/assets/fonts/IRANSansWeb_Light.woff") format("woff");
 }
 
 /*Social Media Colors*/
@@ -3576,6 +3576,7 @@ Margin property
 .rtl .timeline .timeline-item>.timeline-point {
   left: -24px;
   right: inherit;
+  line-height: 1.7rem;
 }
 
 .rtl .timeline .timeline-item>.timeline-event:before {
@@ -3658,7 +3659,6 @@ Margin property
 .rtl .timeline .timeline-item>.timeline-point.timeline-point-blank {
   left: -12px;
   right: inherit;
-  line-height: 1.7rem;
 }
 
 .rtl .timeline .timeline-item.timeline-item-arrow-sm.timeline-item-right>.timeline-event:before {
@@ -4054,7 +4054,6 @@ Margin property
 .rtl .input-group>.custom-select:not(:first-child),
 .rtl .input-group>.form-control:not(:first-child) {
   border-radius: 10px 0 0 10px;
-
   text-align: right;
 }
 

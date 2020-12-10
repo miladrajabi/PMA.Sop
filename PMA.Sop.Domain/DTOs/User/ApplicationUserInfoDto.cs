@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using PMA.Sop.Resources.Resources;
 
-namespace PMA.Sop.ApplicationServices.DTOs.User
+namespace PMA.Sop.Domain.DTOs.User
 {
     public class ApplicationUserInfoDto
     {
@@ -26,8 +26,11 @@ namespace PMA.Sop.ApplicationServices.DTOs.User
         public DateTime? Birthdate { get; set; }
 
         [DisplayName(SharedResource.Sex)]
-        public string Gender { get; set; }
+        public string GenderString { get; set; }
 
         public bool IsUpdated { get; set; }
+
+        public bool? Gender { get; set; }
+
     }
 }

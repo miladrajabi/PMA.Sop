@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace PMA.Sop.ApplicationServices.DTOs
+namespace PMA.Sop.Domain.DTOs
 {
     public class BaseModelDto<TKey>
     {

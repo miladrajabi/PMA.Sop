@@ -159,7 +159,7 @@ $(function () {
       labels: {
         show: true,
         formatter: function (val) {
-          return val + "K";
+          return val + "هزار";
         }
       }
 
@@ -346,7 +346,7 @@ $(function () {
     tooltip: {
       y: {
         formatter: function (val) {
-          return "$ " + val + " thousands"
+          return val + " هزار تومان"
         }
       },
       marker: {

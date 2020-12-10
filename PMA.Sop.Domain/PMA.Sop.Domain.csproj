@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PMA.Sop.Framework\PMA.Sop.Framework.csproj" />
+    <ProjectReference Include="..\PMA.Sop.Resources\PMA.Sop.Resources.csproj" />
   </ItemGroup>
 
 </Project>

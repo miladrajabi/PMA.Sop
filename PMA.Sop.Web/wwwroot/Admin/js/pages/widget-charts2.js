@@ -112,7 +112,7 @@ $(document).ready(function () {
 				tooltip: {
 					backgroundColor: 'rgba(33,33,33,1)',
 					cornerRadius: 0,
-					footerFontFamily: "iransans"
+					footerFontFamily: "iransans'"
 				}
 			}
 		});
@@ -158,7 +158,7 @@ $(document).ready(function () {
 				tooltip: {
 					backgroundColor: 'rgba(33,33,33,1)',
 					cornerRadius: 0,
-					footerFontFamily: "iransans"
+					footerFontFamily: "iransans'"
 				},
 				elements: {
 					arc: {
@@ -209,7 +209,7 @@ $(document).ready(function () {
 				tooltip: {
 					backgroundColor: 'rgba(33,33,33,1)',
 					cornerRadius: 0,
-					footerFontFamily: "iransans"
+					footerFontFamily: "iransans'"
 				},
 				elements: {
 					arc: {
@@ -315,7 +315,7 @@ $(document).ready(function () {
 				tooltip: {
 					backgroundColor: 'rgba(33,33,33,1)',
 					cornerRadius: 0,
-					footerFontFamily: "iransans"
+					footerFontFamily: "iransans'"
 				}
 
 			}
@@ -410,7 +410,7 @@ $(document).ready(function () {
 				tooltip: {
 					backgroundColor: 'rgba(33,33,33,1)',
 					cornerRadius: 0,
-					footerFontFamily: "iransans"
+					footerFontFamily: "iransans'"
 				}
 
 			}
@@ -504,7 +504,7 @@ $(document).ready(function () {
 				tooltip: {
 					backgroundColor: 'rgba(33,33,33,1)',
 					cornerRadius: 0,
-					footerFontFamily: "iransans"
+					footerFontFamily: "iransans'"
 				}
 			}
 		});
@@ -605,7 +605,7 @@ $(document).ready(function () {
 				tooltip: {
 					backgroundColor: 'rgba(33,33,33,1)',
 					cornerRadius: 0,
-					footerFontFamily: "iransans"
+					footerFontFamily: "iransans'"
 				}
 			}
 		});
@@ -721,7 +721,7 @@ $(document).ready(function () {
 				tooltip: {
 					backgroundColor: 'rgba(33,33,33,1)',
 					cornerRadius: 0,
-					footerFontFamily: "iransans"
+					footerFontFamily: "iransans'"
 				}
 
 			}

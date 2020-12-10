@@ -1,6 +1,6 @@
 ﻿@inject IResourceManager _resourceManager
 @using System.Security.Claims
-@model PMA.Sop.ApplicationServices.DTOs.User.ApplicationUserInfoDto
+@model PMA.Sop.Domain.DTOs.User.ApplicationUserInfoDto
 @{
     var readOnly = Model.IsUpdated ? "readonly" : string.Empty;
 }
@@ -40,10 +40,10 @@
                                         <form asp-action="AddApplicationUserInfo" asp-controller="AccountPanel" method="post">
                                             <div class="row">
                                                 <div class="input-radio">
-                                                    <label asp-for="Gender"></label>
-                                                    <input id="Male" type="radio" asp-for="Gender" value="Male" /><label for="Male">مرد</label>
-                                                    <input id="Female" type="radio" asp-for="Gender" value="Female" /> <label for="Female">زن</label>
-                                                    <span asp-validation-for="Gender" class="text-danger"></span>
+                                                    <label asp-for="GenderString"></label>
+                                                    <input id="Male" type="radio" asp-for="GenderString" value="Male" /><label for="Male">مرد</label>
+                                                    <input id="Female" type="radio" asp-for="GenderString" value="Female" /> <label for="Female">زن</label>
+                                                    <span asp-validation-for="GenderString" class="text-danger"></span>
                                                 </div>
                                             </div>
                                             <br>

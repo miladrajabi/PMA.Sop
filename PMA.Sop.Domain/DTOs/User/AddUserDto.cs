@@ -1,23 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Resources.Resources;
 
-namespace PMA.Sop.Core.DTOs.User
+namespace PMA.Sop.Domain.DTOs.User
 {
-    public class RegisterUserDto
+    public class AddUserDto
     {
-        [DisplayName(SharedResource.Email)]
-        [EmailAddress(ErrorMessage = SharedResource.EmailError)]
+        [DisplayName(SharedResource.UserName)]
         [Required(ErrorMessage = SharedResource.Required)]
-        public string Email { get; set; }
-
-        [DisplayName(SharedResource.Phone)]
-        [Phone(ErrorMessage = SharedResource.PhoneError)]
-        //[RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = SharedResource.PhoneError)]
-        [DataType(DataType.PhoneNumber)]
-        [Required(ErrorMessage = SharedResource.Required)]
-        public string PhoneNumber { get; set; }
+        public string UserName { get; set; }
 
         [DataType(DataType.Password)]
         [DisplayName(SharedResource.Password)]
@@ -31,5 +26,11 @@ namespace PMA.Sop.Core.DTOs.User
         public string RePassword { get; set; }
 
         public DateTime RegisteredDate { get; set; }
+
+        [DisplayName(SharedResource.Role)]
+        [Required(ErrorMessage = SharedResource.Required)]
+        public int[] RoleIds { get; set; }
+
+        public List<SelectListItem> ApplicationRoles { get; set; }
     }
 }

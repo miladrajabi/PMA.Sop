@@ -17,12 +17,12 @@ using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.DAL.Context;
 using PMA.Sop.DAL.Context.UOW;
 using PMA.Sop.DAL.User.Repositories;
+using PMA.Sop.Domain.DTOs.User;
 using PMA.Sop.Domain.SeedWork;
 using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Domain.User.Queries;
 using PMA.Sop.Domain.User.Repositories;
-using PMA.Sop.Domain.User.ViewModel;
 using PMA.Sop.Framework.Commands;
 using PMA.Sop.Framework.Queries;
 using PMA.Sop.Framework.Resources;
@@ -64,7 +64,7 @@ namespace PMA.Sop.Web.IoC
             services.AddTransient<IRequestHandler<AddApplicationUserInfoCommand, int>, UserInfoCommandHandler>();
             services.AddTransient<IRequestHandler<UpdateApplicationUserInfoCommand, int>, UserInfoCommandHandler>();
 
-            services.AddTransient<IRequestHandler<GetApplicationUserInfoQuery, GetApplicationUserInfoVM>, UserInfoQueryHandler>();
+            services.AddTransient<IRequestHandler<GetApplicationUserInfoQuery, ApplicationUserInfoDto>, UserInfoQueryHandler>();
 
             //services.AddTransient<CreateUserInfoCommandValidator>();
             services.AddMediatR(typeof(Startup));

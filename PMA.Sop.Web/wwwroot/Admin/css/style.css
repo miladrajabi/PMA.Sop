@@ -77,18 +77,18 @@ Waves
 /*Body*/
 @import url(color_theme.css);
 @import url(style_rtl.css);
-@import url(/admin/assets/icons/font-awesome/css/font-awesome.css);
-@import url(/admin/assets/icons/Ionicons/css/ionicons.css);
-@import url(/admin/assets/icons/themify-icons/themify-icons.css);
-@import url(/admin/assets/icons/linea-icons/linea.css);
-@import url(/admin/assets/icons/glyphicons/glyphicon.css);
-@import url(/admin/assets/icons/flag-icon-css/css/flag-icon.css);
-@import url(/admin/assets/icons/material-design-iconic-font/css/materialdesignicons.css);
-@import url(/admin/assets/icons/simple-line-icons/css/simple-line-icons.css);
-@import url(/admin/assets/icons/cryptocoins-master/cryptocoins.css);
-@import url(/admin/assets/icons/weather-icons/css/weather-icons.min.css);
-@import url(/admin/assets/icons/iconsmind/style.css);
-@import url(/admin/assets/vendor_components/animate/animate.css);
+@import url(/Admin/assets/icons/font-awesome/css/font-awesome.css);
+@import url(/Admin/assets/icons/Ionicons/css/ionicons.css);
+@import url(/Admin/assets/icons/themify-icons/themify-icons.css);
+@import url(/Admin/assets/icons/linea-icons/linea.css);
+@import url(/Admin/assets/icons/glyphicons/glyphicon.css);
+@import url(/Admin/assets/icons/flag-icon-css/css/flag-icon.css);
+@import url(/Admin/assets/icons/material-design-iconic-font/css/materialdesignicons.css);
+@import url(/Admin/assets/icons/simple-line-icons/css/simple-line-icons.css);
+@import url(/Admin/assets/icons/cryptocoins-master/cryptocoins.css);
+@import url(/Admin/assets/icons/weather-icons/css/weather-icons.min.css);
+@import url(/Admin/assets/icons/iconsmind/style.css);
+@import url(/Admin/assets/vendor_components/animate/animate.css);
 
 html {
   height: 100%;
@@ -601,6 +601,10 @@ code {
 dd {
   margin-right: 0;
   margin-left: unset;
+}
+
+i.cc {
+  margin: 0 0 0 1.3rem;
 }
 
 hr {
@@ -19016,7 +19020,7 @@ body .main-header .navbar .nav>li.search-box>a:focus {
   position: relative;
   width: 100%;
   padding: 10px 0 10px;
-  background-image: url(/admin/images//user-info.jpg);
+  background-image: url(/Admin/images//user-info.jpg);
 }
 
 .user-panel:before,
@@ -19700,7 +19704,6 @@ body .main-header .navbar .nav>li.search-box>a:focus {
   padding-top: 3px;
 }
 
-
 .content-header .breadcrumb .breadcrumb-item a {
   color: #475f7b;
 }
@@ -19950,7 +19953,7 @@ body .main-header .navbar .nav>li.search-box>a:focus {
 
 /*progress*/
 .progress {
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
   border-radius: 5px;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -22438,7 +22441,6 @@ ul.panel-actions>li:first-child {
   border-radius: 18px;
   color: #475f7b;
   text-transform: none;
-  letter-spacing: 0;
   background-color: #d5dfea;
   font-size: 0.8571rem;
   display: -webkit-inline-box;
@@ -22665,7 +22667,6 @@ ul.panel-actions>li:first-child {
 /*---switch---*/
 .switch {
   font-weight: 300;
-  letter-spacing: 0;
   margin-bottom: 0;
   line-height: 29px;
   cursor: pointer;
@@ -24453,7 +24454,6 @@ time {
   flex: 0 1 0%;
   color: #879fba;
   font-size: 0.8571rem;
-  letter-spacing: .5px;
   margin: 2rem auto;
   width: 100%;
 }
@@ -25117,7 +25117,6 @@ time {
   font-size: 1rem;
   margin-top: 0.5em;
   text-align: center;
-  letter-spacing: 4px;
   font-weight: 400;
 }
 
@@ -26052,10 +26051,6 @@ textarea.form-control {
 
 .bootstrap-select.btn-group .dropdown-menu li.divider {
   margin: 0.2rem auto;
-}
-
-.bootstrap-select.btn-group .dropdown-menu li a span.text {
-  letter-spacing: inherit;
 }
 
 .bootstrap-touchspin .input-group-btn-vertical>.btn {
@@ -27333,7 +27328,6 @@ textarea.form-control {
 .badge-bold {
   text-transform: uppercase;
   font-weight: 500;
-  letter-spacing: 1px;
 }
 
 .list-group .badge-pill {
@@ -29221,7 +29215,6 @@ ul.flexbox {
   padding-right: 18px;
   font-size: 1rem;
   font-weight: 300;
-  letter-spacing: .5px;
   outline: none !important;
   -webkit-transition: .5s;
   transition: .5s;
@@ -32736,7 +32729,6 @@ button.btn.dropdown-toggle:after {
   font-size: 1rem;
   background-color: #d5dfea;
   border: none;
-  letter-spacing: 1px;
   border-radius: 0;
 }
 

@@ -1,18 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
-using PMA.Sop.ApplicationServices.DTOs.User;
-using PMA.Sop.Core.DTOs.User;
+using PMA.Sop.Domain.DTOs.User;
 using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Queries;
-using PMA.Sop.Framework.Commands;
-using PMA.Sop.Framework.Queries;
-using PMA.Sop.Framework.Resources.Interface;
 using PMA.Sop.Framework.Web;
 
 namespace PMA.Sop.Web.Areas.Panel.Controllers
@@ -50,11 +44,11 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
 
                 if (cmd.Gender.GetValueOrDefault())
                 {
-                    model.Gender = "Male";
+                    model.GenderString = "Male";
                 }
                 else if (!cmd.Gender.GetValueOrDefault())
                 {
-                    model.Gender = "Female";
+                    model.GenderString = "Female";
                 }
 
             }
@@ -66,14 +60,12 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
         {
             bool? gender = null;
             var res = 0;
-            if (model.Gender.ToLower() == "male")
+            gender = model.GenderString.ToLower() switch
             {
-                gender = true;
-            }
-            else if (model.Gender.ToLower() == "female")
-            {
-                gender = false;
-            }
+                "male" => true,
+                "female" => false,
+                _ => null
+            };
             if (!ModelState.IsValid) return View(model);
             if (!model.IsUpdated)
             {

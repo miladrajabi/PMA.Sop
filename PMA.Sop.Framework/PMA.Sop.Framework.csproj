@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Helper\" />
+    <Folder Include="Common\Localization\" />
   </ItemGroup>
 
 </Project>

@@ -18,7 +18,7 @@
         <ul class="sidebar-menu" data-widget="tree">
 
             <li>
-                <a href="index.html">
+                <a asp-action="Index" asp-controller="Home">
                     <i data-feather="pie-chart"></i>
                     <span>داشبورد</span>
                 </a>
@@ -36,8 +36,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="components_alerts.html"><i class="ti-more"></i>دسترسی</a></li>
-                    <li><a href="components_badges.html"><i class="ti-more"></i>کاربران</a></li>
+                    <li><a asp-action="Index" asp-controller="Roles"><i class="ti-more"></i>دسترسی</a></li>
+                    <li><a asp-action="Index" asp-controller="User"><i class="ti-more"></i>کاربران</a></li>
                 </ul>
             </li>
         </ul>

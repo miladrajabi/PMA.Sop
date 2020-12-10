@@ -1,0 +1,72 @@
+﻿@model PMA.Sop.Domain.DTOs.Role.RolesAddDto
+@inject IResourceManager _resourceManager
+@{
+    ViewData["Title"] = _resourceManager[SharedResource.Role];
+}
+
+<div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="page-title">کاربران</h3>
+            <div class="d-inline-block align-items-center">
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index">
+                                <i class="mdi mdi-home-outline"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">@_resourceManager[SharedResource.UserManagement]</li>
+                        <li class="breadcrumb-item active" aria-current="page">@_resourceManager[SharedResource.Role]</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+<section class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="box">
+                <div class="box-header">
+                    <h4 class="box-title">@_resourceManager[SharedResource.Role]</h4>
+                </div>
+                <div class="box-body">
+                    <form asp-action="Create" asp-controller="Roles" asp-area="Admin" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label"></label>
+                            <div class="input-group">
+                                <input type="text" asp-for="Name" class="form-control" />
+                            </div>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label asp-for="Description" class="control-label"></label>
+                                    <textarea asp-for="Description" rows="5" cols="5" placeholder="@_resourceManager[SharedResource.Description]" class="form-control"></textarea>
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-footer text-right">
+                            <button class="btn btn-success mr-1 mb-5 pull-right" type="submit">
+                                <span class="fa fa-check-circle"></span>
+                                @_resourceManager[SharedResource.Save]
+                            </button>
+                            <a asp-action="Index" class="btn btn-danger mb-5  pull-right">
+                                <span class="fa fa-fw fa-undo"></span>
+                                @_resourceManager[SharedResource.Cancel]
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+

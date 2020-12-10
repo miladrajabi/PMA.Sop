@@ -1,9 +1,8 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using PMA.Sop.Resources.Resources;
 
-namespace PMA.Sop.ApplicationServices.DTOs.User
+namespace PMA.Sop.Domain.DTOs.User
 {
     public class UserDto : BaseModelDto<long>
     {

@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PMA.Sop.Resources.Resources
+﻿namespace PMA.Sop.Resources.Resources
 {
     public class SharedResource
     {
         public const string AddFailure = nameof(AddFailure);
         public const string AddSuccess = nameof(AddSuccess);
         public const string AddCategory = nameof(AddCategory);
+        public const string AddRoles = nameof(AddRoles);
         public const string AddMaster = nameof(AddMaster);
         public const string Admin = nameof(Admin);
         public const string AppName = nameof(AppName);
@@ -117,5 +112,20 @@ namespace PMA.Sop.Resources.Resources
         public const string Birthdate = nameof(Birthdate);
         public const string Sex = nameof(Sex);
         public const string AccountInfo = nameof(AccountInfo);
+        public const string Title = nameof(Title);
+
+        #region  Button
+        public const string Cancel = nameof(Cancel);
+
+        
+
+        #endregion
+
+        #region UserManagement
+        public const string Role = nameof(Role);
+        public const string UserName = nameof(UserName);
+        public const string UserManagement = nameof(UserManagement);
+        #endregion
+
     }
 }

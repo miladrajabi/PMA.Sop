@@ -10,11 +10,12 @@
     <link rel="icon" href="/admin/images/favicon.ico">
 
     <title>پنل مدیریت فروشگاه | @ViewBag.Title</title>
-    <link href="~/Admin/css/vendors_css.css" rel="stylesheet" />
-    <link href="~/Admin/css/style.css" rel="stylesheet" />
-    <link href="~/Admin/css/skin_color.css" rel="stylesheet" />
+    <partial name="_styles" />
+
+    @await RenderSectionAsync("style", false)
+
 </head>
-<body class="hold-transition dark-skin sidebar-mini theme-primary fixed rtl">
+<body class="hold-transition light-skin sidebar-mini theme-primary fixed rtl">
     <div class="wrapper">
 
         @*header*@
@@ -37,16 +38,9 @@
         @*Footer*@
 
     </div>
-    <script src="/Admin/js/vendors.min.js"></script>
-    <script src="/Admin/assets/icons/feather-icons/feather.min.js"></script>
-    <script src="/Admin/assets/vendor_components/easypiechart/dist/jquery.easypiechart.js"></script>
-    <script src="/Admin/assets/vendor_components/apexcharts-bundle/irregular-data-series.js"></script>
-    <script src="/Admin/assets/vendor_components/apexcharts-bundle-rtl/irregular-data-series.js"></script>
-    <script src="/Admin/assets/vendor_components/apexcharts-bundle-rtl/dist/apexcharts.js"></script>
-    <script src="/Admin/assets/vendor_components/datatable/datatables.min.js"></script>
-    <script src="/Admin/js/pages/data-table.js"></script>
-    <script src="/Admin/js/template.js"></script>
-    <script src="/Admin/js/pages/dashboard.js"></script>
+    <partial name="_script" />
+
+    @await RenderSectionAsync("Scripts", false)
 
 </body>
 </html>
