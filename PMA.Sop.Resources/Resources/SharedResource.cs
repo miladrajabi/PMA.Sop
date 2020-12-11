@@ -113,6 +113,8 @@
         public const string Sex = nameof(Sex);
         public const string AccountInfo = nameof(AccountInfo);
         public const string Title = nameof(Title);
+        public const string EnglishTitle = nameof(EnglishTitle);
+        public const string IsNotUnique = nameof(IsNotUnique);
 
         #region  Button
         public const string Cancel = nameof(Cancel);
@@ -127,5 +129,6 @@
         public const string UserManagement = nameof(UserManagement);
         #endregion
 
+        public const string File = nameof(File);
     }
 }

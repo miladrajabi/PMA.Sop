@@ -243,6 +243,9 @@
   <data name="Introduction" xml:space="preserve">
     <value>معرفی </value>
   </data>
+  <data name="IsNotUnique" xml:space="preserve">
+    <value>{0} تکراری می باشد.</value>
+  </data>
   <data name="Item" xml:space="preserve">
     <value>کالا</value>
   </data>

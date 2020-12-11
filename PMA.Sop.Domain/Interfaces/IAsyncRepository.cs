@@ -5,7 +5,6 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Ardalis.Specification;
 using Microsoft.EntityFrameworkCore;
-using PMA.Sop.ApplicationServices.Interfaces;
 
 namespace PMA.Sop.Domain.Interfaces
 {
@@ -23,5 +22,6 @@ namespace PMA.Sop.Domain.Interfaces
         EntityState SoftDelete(T entity);
         Task<bool> ExistsAsync(Expression<Func<T, bool>> predicate);
         IQueryable<T> RawSql(string query, params object[] parameters);
+        Task<IReadOnlyList<T>> GetPagedRespondAsync(int pageNumber, int pageSize);
     }
 }

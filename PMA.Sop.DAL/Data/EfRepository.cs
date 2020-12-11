@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Ardalis.Specification;
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PMA.Sop.ApplicationServices.Interfaces;
 using PMA.Sop.DAL.Context;
 using PMA.Sop.Domain.Interfaces;
 using PMA.Sop.Framework.Domain;
@@ -47,7 +46,7 @@ namespace PMA.Sop.DAL.Data
 
         public virtual void Update(T entity)
         {
-            _dbSet.Update(entity);
+            DbContext.Entry(entity).State = EntityState.Modified;
         }
 
         public virtual void Delete(T entity)
@@ -88,6 +87,15 @@ namespace PMA.Sop.DAL.Data
         public virtual IQueryable<T> RawSql(string query, params object[] parameters)
         {
             return _dbSet.FromSqlRaw(query, parameters);
+        }
+
+        public async Task<IReadOnlyList<T>> GetPagedRespondAsync(int pageNumber, int pageSize)
+        {
+            return await _dbSet
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .AsNoTracking()
+                .ToListAsync();
         }
 
         private IQueryable<T> ApplySpecification(ISpecification<T> spec, bool asNoTracking = false)

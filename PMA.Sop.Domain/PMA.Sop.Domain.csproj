@@ -5,9 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Product\Commands\" />
     <Folder Include="Product\Queries\" />
-    <Folder Include="Product\Repositories\" />
     <Folder Include="Sample\Commands\" />
     <Folder Include="Sample\Entities\" />
     <Folder Include="Sample\Repositories\" />
@@ -21,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="Ardalis.Specification" Version="4.1.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>

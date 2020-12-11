@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using PMA.Sop.Domain.DTOs.User;
 using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Queries;
+using PMA.Sop.Framework.Dtos;
 using PMA.Sop.Framework.Web;
 
 namespace PMA.Sop.Web.Areas.Panel.Controllers
@@ -32,7 +33,7 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
             var _userId = Convert.ToInt16(claim?.Value);
-            var model = new ApplicationUserInfoDto() { IsUpdated = false,ApplicationUserId = _userId };
+            var model = new ApplicationUserInfoDto() { IsUpdated = false, ApplicationUserId = _userId };
             var cmd = await Mediator.Send(new GetApplicationUserInfoQuery() { ApplicationUserId = _userId });
             if (cmd != null)
             {
@@ -59,7 +60,7 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
         public async Task<IActionResult> AddApplicationUserInfo(ApplicationUserInfoDto model)
         {
             bool? gender = null;
-            var res = 0;
+            var res = new ResultDto();
             gender = model.GenderString.ToLower() switch
             {
                 "male" => true,
@@ -69,7 +70,7 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
             if (!ModelState.IsValid) return View(model);
             if (!model.IsUpdated)
             {
-                var command = new AddApplicationUserInfoCommand()
+                var command = new AddApplicationUserInfoCommand
                 {
                     CreateDate = DateTime.Now,
                     CreatorUserId = model.ApplicationUserId,
@@ -84,7 +85,7 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
             }
             else
             {
-                var command = new UpdateApplicationUserInfoCommand()
+                var command = new UpdateApplicationUserInfoCommand
                 {
                     CreateDate = DateTime.Now,
                     CreatorUserId = model.ApplicationUserId,
@@ -96,13 +97,9 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
                 };
                 res = await Mediator.Send(command);
             }
-
-
-            if (res > 0)
-            {
-
+            if (res.IsSuccess)
                 return RedirectToAction("Index");
-            }
+
             //ModelState.AddModelError("", result.Message);
             //foreach (var item in result.Errors)
             //{

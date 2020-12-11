@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PMA.Sop.ApplicationServices.Convertors;
+using PMA.Sop.ApplicationServices.Products.Command.Brands;
 using PMA.Sop.ApplicationServices.User.Command;
 using PMA.Sop.ApplicationServices.User.Queries;
 using PMA.Sop.Core.Convertors.Interfaces;
@@ -16,14 +17,18 @@ using PMA.Sop.Core.Services;
 using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.DAL.Context;
 using PMA.Sop.DAL.Context.UOW;
+using PMA.Sop.DAL.Product.Repositories.Brands;
 using PMA.Sop.DAL.User.Repositories;
 using PMA.Sop.Domain.DTOs.User;
+using PMA.Sop.Domain.Product.Commands.Brands;
+using PMA.Sop.Domain.Product.Repositories.Brands;
 using PMA.Sop.Domain.SeedWork;
 using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Domain.User.Queries;
 using PMA.Sop.Domain.User.Repositories;
 using PMA.Sop.Framework.Commands;
+using PMA.Sop.Framework.Dtos;
 using PMA.Sop.Framework.Queries;
 using PMA.Sop.Framework.Resources;
 using PMA.Sop.Framework.Resources.Interface;
@@ -54,6 +59,7 @@ namespace PMA.Sop.Web.IoC
 
             #region Repository
             services.AddTransient<IApplicationUserInfoCommandRepository, ApplicationUserInfoCommandRepository>();
+            services.AddTransient<IBrandsCommandRepository, BrandsCommandRepository>();
 
 
             #endregion
@@ -61,10 +67,17 @@ namespace PMA.Sop.Web.IoC
             #region MediatR
 
 
-            services.AddTransient<IRequestHandler<AddApplicationUserInfoCommand, int>, UserInfoCommandHandler>();
-            services.AddTransient<IRequestHandler<UpdateApplicationUserInfoCommand, int>, UserInfoCommandHandler>();
+            services.AddTransient<IRequestHandler<AddApplicationUserInfoCommand, ResultDto>, UserInfoCommandHandler>();
+            services.AddTransient<IRequestHandler<UpdateApplicationUserInfoCommand, ResultDto>, UserInfoCommandHandler>();
 
             services.AddTransient<IRequestHandler<GetApplicationUserInfoQuery, ApplicationUserInfoDto>, UserInfoQueryHandler>();
+
+
+            #region Products
+
+
+            services.AddTransient<IRequestHandler<BrandCreateCommand, ResultDto>, AddBrandHandler>();
+            #endregion
 
             //services.AddTransient<CreateUserInfoCommandValidator>();
             services.AddMediatR(typeof(Startup));

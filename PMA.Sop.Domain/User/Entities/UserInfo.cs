@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using PMA.Sop.ApplicationServices.Interfaces;
+using PMA.Sop.Domain.Interfaces;
 using PMA.Sop.Framework.Domain;
 
 namespace PMA.Sop.Domain.User.Entities

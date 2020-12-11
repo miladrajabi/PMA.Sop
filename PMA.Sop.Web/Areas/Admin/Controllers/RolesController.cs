@@ -23,12 +23,13 @@ namespace PMA.Sop.Web.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index(int pageIndex = 1, int? pageSize = null)
         {
-            var role = await _roleManager.Roles.Select(x => new RoleListDto()
+            var role = await _roleManager.Roles.AsNoTracking().Select(x => new RoleListDto()
             {
                 Id = x.Id,
                 Name = x.Name,
                 Description = x.Description
             }).ToListAsync();
+            
             return View(role);
         }
 

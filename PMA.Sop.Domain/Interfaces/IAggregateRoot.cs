@@ -1,4 +1,4 @@
-﻿namespace PMA.Sop.ApplicationServices.Interfaces
+﻿namespace PMA.Sop.Domain.Interfaces
 {
     public interface IAggregateRoot
     {
