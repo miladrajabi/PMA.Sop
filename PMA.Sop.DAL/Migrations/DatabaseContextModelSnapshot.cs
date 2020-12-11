@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PMA.Sop.DAL.Context;
 
 namespace PMA.Sop.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201201162757_birthdate_datetype")]
-    partial class birthdate_datetype
+    partial class DatabaseContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -122,6 +120,302 @@ namespace PMA.Sop.DAL.Migrations
                     b.ToTable("UserTokens");
                 });
 
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Brand", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("EnglishTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Remarks")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Src")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Brands", "pr");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Category", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<long?>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("ModifiedId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("ParentId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.ToTable("Categories", "pr");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Product", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<long>("BrandId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int?>("BrandId1")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("CanPurchase")
+                        .HasColumnType("bit");
+
+                    b.Property<long?>("CategoryId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Code")
+                        .HasMaxLength(10)
+                        .HasColumnType("nchar(10)");
+
+                    b.Property<int>("Color")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<int>("Discount")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("Displayed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("EnglishTitle")
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("ModifiedId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PriceDiscount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BrandId1");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.ToTable("Products", "pr");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.ProductFeature", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<string>("EnglishTitle")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("ModifiedId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductFeatures", "pr");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<bool?>("IsBaseImage")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
+
+                    b.Property<bool?>("IsShow")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Src")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages", "pr");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.ProductTechnical", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("CreatorUserId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1500)
+                        .HasColumnType("nvarchar(1500)");
+
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime?>("ModifiedDate")
+                        .HasColumnType("DateTime");
+
+                    b.Property<int?>("ModifiedId")
+                        .HasColumnType("int");
+
+                    b.Property<long>("ProductId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("DateTime");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductTechnicals", "pr");
+                });
+
             modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationRole", b =>
                 {
                     b.Property<int>("Id")
@@ -227,7 +521,7 @@ namespace PMA.Sop.DAL.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUserAddress", b =>
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.UserAddress", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -246,6 +540,9 @@ namespace PMA.Sop.DAL.Migrations
                     b.Property<long>("DistrictId")
                         .HasColumnType("bigint");
 
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("DateTime");
 
@@ -256,25 +553,37 @@ namespace PMA.Sop.DAL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nchar(10)");
 
                     b.Property<string>("PostalAddress")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(350)
+                        .HasColumnType("nvarchar(350)");
 
                     b.Property<string>("RecipientFirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
-                    b.Property<bool>("RecipientIsSelf")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("RecipientIsSelf")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("RecipientLastName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<string>("RecipientNationalCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nchar(10)");
 
                     b.Property<string>("RecipientPhoneNumber")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("DateTime");
 
                     b.Property<string>("Unit")
                         .HasColumnType("nvarchar(max)");
@@ -286,10 +595,10 @@ namespace PMA.Sop.DAL.Migrations
                     b.HasIndex("DistrictId")
                         .IsUnique();
 
-                    b.ToTable("ApplicationUserAddresses");
+                    b.ToTable("UserAddresses");
                 });
 
-            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUserInfo", b =>
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.UserInfo", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -309,13 +618,20 @@ namespace PMA.Sop.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<bool?>("Gender")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsRemoved")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("DateTime");
@@ -324,14 +640,18 @@ namespace PMA.Sop.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("NationalCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(10)
+                        .HasColumnType("nchar(10)");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("DateTime");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId")
                         .IsUnique();
 
-                    b.ToTable("ApplicationUserInfos");
+                    b.ToTable("UserInfos");
                 });
 
             modelBuilder.Entity("PMA.Sop.Domain.Wallet.Entities.Wallet", b =>
@@ -342,6 +662,7 @@ namespace PMA.Sop.DAL.Migrations
                         .UseIdentityColumn();
 
                     b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("ApplicationUserId")
@@ -354,9 +675,13 @@ namespace PMA.Sop.DAL.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
 
                     b.Property<bool>("IsPay")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsRemoved")
                         .HasColumnType("bit");
 
                     b.Property<DateTime?>("ModifiedDate")
@@ -364,6 +689,9 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.Property<int?>("ModifiedId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("RemoveTime")
+                        .HasColumnType("DateTime");
 
                     b.Property<long>("WalletTypeId")
                         .HasColumnType("bigint");
@@ -374,7 +702,7 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.HasIndex("WalletTypeId");
 
-                    b.ToTable("Wallet");
+                    b.ToTable("Wallets");
                 });
 
             modelBuilder.Entity("PMA.Sop.Domain.Wallet.Entities.WalletType", b =>
@@ -401,7 +729,7 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("WalletType");
+                    b.ToTable("WalletTypes");
                 });
 
             modelBuilder.Entity("PMA.Sop.Domain.Zone.Entities.District", b =>
@@ -552,17 +880,96 @@ namespace PMA.Sop.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUserAddress", b =>
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Category", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.Product.Entities.Category", null)
+                        .WithMany("Children")
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("Categories")
+                        .HasForeignKey("CreatorUserId");
+
+                    b.Navigation("ApplicationUser");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Product", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.Product.Entities.Brand", "Brand")
+                        .WithMany("Products")
+                        .HasForeignKey("BrandId1");
+
+                    b.HasOne("PMA.Sop.Domain.Product.Entities.Category", "Category")
+                        .WithMany("Products")
+                        .HasForeignKey("CategoryId");
+
+                    b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("Products")
+                        .HasForeignKey("CreatorUserId");
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Brand");
+
+                    b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.ProductFeature", b =>
                 {
                     b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
-                        .WithMany("ApplicationUserAddress")
+                        .WithMany("ProductFeatures")
+                        .HasForeignKey("CreatorUserId");
+
+                    b.HasOne("PMA.Sop.Domain.Product.Entities.Product", "Product")
+                        .WithMany("ProductFeatures")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.ProductImage", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.Product.Entities.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.ProductTechnical", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("ProductTechnicals")
+                        .HasForeignKey("CreatorUserId");
+
+                    b.HasOne("PMA.Sop.Domain.Product.Entities.Product", "Product")
+                        .WithMany("ProductTechnicals")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.UserAddress", b =>
+                {
+                    b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
+                        .WithMany("UserAddress")
                         .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("PMA.Sop.Domain.Zone.Entities.District", "District")
                         .WithOne("ApplicationUserAddress")
-                        .HasForeignKey("PMA.Sop.Domain.User.Entities.ApplicationUserAddress", "DistrictId")
+                        .HasForeignKey("PMA.Sop.Domain.User.Entities.UserAddress", "DistrictId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -571,11 +978,11 @@ namespace PMA.Sop.DAL.Migrations
                     b.Navigation("District");
                 });
 
-            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUserInfo", b =>
+            modelBuilder.Entity("PMA.Sop.Domain.User.Entities.UserInfo", b =>
                 {
                     b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
-                        .WithOne("ApplicationUserInfo")
-                        .HasForeignKey("PMA.Sop.Domain.User.Entities.ApplicationUserInfo", "ApplicationUserId")
+                        .WithOne("UserInfo")
+                        .HasForeignKey("PMA.Sop.Domain.User.Entities.UserInfo", "ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -619,11 +1026,40 @@ namespace PMA.Sop.DAL.Migrations
                     b.Navigation("Zone");
                 });
 
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Brand", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Category", b =>
+                {
+                    b.Navigation("Children");
+
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Product", b =>
+                {
+                    b.Navigation("ProductFeatures");
+
+                    b.Navigation("ProductImages");
+
+                    b.Navigation("ProductTechnicals");
+                });
+
             modelBuilder.Entity("PMA.Sop.Domain.User.Entities.ApplicationUser", b =>
                 {
-                    b.Navigation("ApplicationUserAddress");
+                    b.Navigation("Categories");
 
-                    b.Navigation("ApplicationUserInfo");
+                    b.Navigation("ProductFeatures");
+
+                    b.Navigation("Products");
+
+                    b.Navigation("ProductTechnicals");
+
+                    b.Navigation("UserAddress");
+
+                    b.Navigation("UserInfo");
 
                     b.Navigation("Wallets");
                 });

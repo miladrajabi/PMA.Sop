@@ -9,9 +9,9 @@ using PMA.Sop.Domain.User.Entities;
 
 namespace PMA.Sop.DAL.User.Configs
 {
-    public class ApplicationUserInfoConfig : IEntityTypeConfiguration<ApplicationUserInfo>
+    public class ApplicationUserInfoConfig : IEntityTypeConfiguration<UserInfo>
     {
-        public void Configure(EntityTypeBuilder<ApplicationUserInfo> builder)
+        public void Configure(EntityTypeBuilder<UserInfo> builder)
         {
             builder.Property(c => c.FirstName).IsRequired().HasMaxLength(150);
             builder.Property(c => c.LastName).IsRequired().HasMaxLength(250);

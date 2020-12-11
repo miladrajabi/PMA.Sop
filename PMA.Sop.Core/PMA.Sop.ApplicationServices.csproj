@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Products\Command\" />
+    <Folder Include="Products\Queries\" />
     <Folder Include="Security\" />
   </ItemGroup>
 

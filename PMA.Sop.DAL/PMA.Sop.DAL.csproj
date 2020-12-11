@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Product\Configs\ProductFeatureConfig.cs~RF2b2d0d0.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Ardalis.Specification" Version="4.1.0" />
     <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="4.1.0" />
     <PackageReference Include="MediatR" Version="9.0.0" />
@@ -29,6 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Product\Repositories\" />
     <Folder Include="Sample\Configs\" />
     <Folder Include="Sample\Repositories\" />
   </ItemGroup>

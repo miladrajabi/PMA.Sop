@@ -7,19 +7,19 @@ using PMA.Sop.Domain.User.Repositories;
 
 namespace PMA.Sop.DAL.User.Repositories
 {
-    public class ApplicationUserInfoCommandRepository : EfRepository<ApplicationUserInfo>, IApplicationUserInfoCommandRepository
+    public class ApplicationUserInfoCommandRepository : EfRepository<UserInfo>, IApplicationUserInfoCommandRepository
     {
 
         public ApplicationUserInfoCommandRepository(DatabaseContext databaseContext) : base(databaseContext)
         {
         }
 
-        public void Add(ApplicationUserInfo command)
+        public void Add(UserInfo command)
         {
-            DbContext.ApplicationUserInfos.Add(command);
+            DbContext.UserInfos.Add(command);
         }
 
-        public void UpdateRep(ApplicationUserInfo entity, UpdateApplicationUserInfoCommand model)
+        public void UpdateRep(UserInfo entity, UpdateApplicationUserInfoCommand model)
         {
             entity.Gender = model.Gender;
             entity.FirstName = model.FirstName;

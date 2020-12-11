@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using PMA.Sop.Domain.Product.Entities;
 using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Domain.Zone.Entities;
 using PMA.Sop.Domain.Wallet.Entities;
@@ -15,13 +16,23 @@ namespace PMA.Sop.DAL.Context
 
         }
 
-        public DbSet<ApplicationUserAddress> ApplicationUserAddresses { get; set; }
-        public DbSet<ApplicationUserInfo> ApplicationUserInfos { get; set; }
+        public DbSet<UserAddress> UserAddresses { get; set; }
+        public DbSet<UserInfo> UserInfos { get; set; }
         public DbSet<Zone> Zones { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Domain.Wallet.Entities.Wallet> Wallets { get; set; }
         public DbSet<WalletType> WalletTypes { get; set; }
+
+        #region Product
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Domain.Product.Entities.Product> Products { get; set; }
+        public DbSet<ProductFeature> ProductFeatures { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
+        public DbSet<ProductTechnical> ProductTechnicals { get; set; }
+
+        #endregion
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -64,6 +75,17 @@ namespace PMA.Sop.DAL.Context
                 entity.ToTable("UserTokens");
 
             });
+
+            #region Products
+
+            builder.Entity<Brand>().ToTable(nameof(Brands), "pr");
+            builder.Entity<Category>().ToTable(nameof(Categories), "pr");
+            builder.Entity<Domain.Product.Entities.Product>().ToTable(nameof(Products), "pr");
+            builder.Entity<ProductFeature>().ToTable(nameof(ProductFeatures), "pr");
+            builder.Entity<ProductImage>().ToTable(nameof(ProductImages), "pr");
+            builder.Entity<ProductTechnical>().ToTable(nameof(ProductTechnicals), "pr");
+
+            #endregion
         }
     }
 }

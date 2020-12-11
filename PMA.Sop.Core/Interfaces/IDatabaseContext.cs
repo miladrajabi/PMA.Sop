@@ -7,8 +7,8 @@ namespace PMA.Sop.ApplicationServices.Interfaces
 {
     public interface IDatabaseContext
     {
-        public DbSet<ApplicationUserAddress> ApplicationUserAddresses { get; set; }
-        public DbSet<ApplicationUserInfo> ApplicationUserInfos { get; set; }
+        public DbSet<UserAddress> UserAddresses { get; set; }
+        public DbSet<UserInfo> ApplicationUserInfos { get; set; }
         public DbSet<Zone> Zones { get; set; }
         public DbSet<Province> Provinces { get; set; }
         public DbSet<District> Districts { get; set; }

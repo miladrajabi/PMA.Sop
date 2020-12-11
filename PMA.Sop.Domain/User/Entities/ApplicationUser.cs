@@ -17,13 +17,14 @@ namespace PMA.Sop.Domain.User.Entities
 
         public virtual List<Wallet.Entities.Wallet> Wallets { get; set; }
 
-        public virtual ApplicationUserInfo ApplicationUserInfo { get; set; }
+        public virtual UserInfo UserInfo { get; set; }
 
-        public ICollection<ApplicationUserAddress> ApplicationUserAddress { get; set; }
+        public ICollection<UserAddress> UserAddress { get; set; }
 
         public ICollection<ProductFeature> ProductFeatures { get; set; }
         public ICollection<Product.Entities.Product> Products { get; set; }
         public ICollection<Category> Categories { get; set; }
+        public ICollection<ProductTechnical> ProductTechnicals { get; set; }
 
         #endregion
 

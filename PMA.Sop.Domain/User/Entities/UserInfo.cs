@@ -6,7 +6,7 @@ using PMA.Sop.Framework.Domain;
 
 namespace PMA.Sop.Domain.User.Entities
 {
-    public class ApplicationUserInfo : BaseEntity<long>, IAggregateRoot
+    public class UserInfo : BaseEntity<long>, IAggregateRoot
     {
         public int ApplicationUserId { get; set; }
 

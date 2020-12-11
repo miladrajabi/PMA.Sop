@@ -25,15 +25,17 @@ namespace PMA.Sop.ApplicationServices.User.Queries
         {
             var rec = await _repository.FirstOrDefaultAsync(
                 new ApplicationUserInfoSpecification(request.ApplicationUserId));
-            return new ApplicationUserInfoDto()
-            {
-                ApplicationUserId = rec.ApplicationUserId,
-                FirstName = rec.FirstName,
-                LastName = rec.LastName,
-                NationalCode = rec.NationalCode,
-                Birthdate = rec.Birthdate,
-                Gender = rec.Gender,
-            };
+            if (rec != null)
+                return new ApplicationUserInfoDto()
+                {
+                    ApplicationUserId = rec.ApplicationUserId,
+                    FirstName = rec.FirstName,
+                    LastName = rec.LastName,
+                    NationalCode = rec.NationalCode,
+                    Birthdate = rec.Birthdate,
+                    Gender = rec.Gender,
+                };
+            return null;
         }
     }
 }

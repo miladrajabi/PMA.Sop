@@ -27,7 +27,7 @@ namespace PMA.Sop.ApplicationServices.User.Command
         public async Task<int> Handle(AddApplicationUserInfoCommand request, CancellationToken cancellationToken)
         {
 
-            var model = new ApplicationUserInfo()
+            var model = new UserInfo()
             {
                 CreateDate = request.CreateDate,
                 CreatorUserId = request.ApplicationUserId,

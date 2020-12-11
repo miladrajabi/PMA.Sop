@@ -1,11 +1,10 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations.Schema;
 using PMA.Sop.Domain.Zone.Entities;
 using PMA.Sop.Framework.Domain;
 
 namespace PMA.Sop.Domain.User.Entities
 {
-    public class ApplicationUserAddress : BaseEntity<long>
+    public class UserAddress : BaseEntity<long>
     {
         public int ApplicationUserId { get; set; }
 
@@ -13,7 +12,7 @@ namespace PMA.Sop.Domain.User.Entities
         public string Plaque { get; set; }
         public string Unit { get; set; }
         public string PostalAddress { get; set; }
-        public bool RecipientIsSelf { get; set; }
+        public bool? RecipientIsSelf { get; set; }
 
         [ForeignKey(name: nameof(District))]
         public long DistrictId { get; set; }

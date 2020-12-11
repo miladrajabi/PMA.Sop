@@ -6,8 +6,6 @@ namespace PMA.Sop.Domain.Product.Entities
     public class Brand : BaseHcEntity<int>
     {
         public ICollection<Product> Products { get; set; }
-
         public string Src { get; set; }
-
     }
 }

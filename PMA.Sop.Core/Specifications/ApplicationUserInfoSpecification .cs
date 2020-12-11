@@ -3,7 +3,7 @@ using PMA.Sop.Domain.User.Entities;
 
 namespace PMA.Sop.ApplicationServices.Specifications
 {
-    public sealed class ApplicationUserInfoSpecification : Specification<ApplicationUserInfo>
+    public sealed class ApplicationUserInfoSpecification : Specification<UserInfo>
     {
         public ApplicationUserInfoSpecification(int applicationUserId)
         {

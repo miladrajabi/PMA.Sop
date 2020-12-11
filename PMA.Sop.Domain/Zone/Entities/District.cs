@@ -9,7 +9,7 @@ namespace PMA.Sop.Domain.Zone.Entities
 
         #region relations
         public virtual Province Province { get; set; }
-        public virtual ApplicationUserAddress ApplicationUserAddress { get; set; }
+        public virtual UserAddress ApplicationUserAddress { get; set; }
         #endregion
     }
 }

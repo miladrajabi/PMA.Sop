@@ -5,9 +5,9 @@ using PMA.Sop.Domain.User.Entities;
 
 namespace PMA.Sop.Domain.User.Repositories
 {
-    public interface IApplicationUserInfoCommandRepository : IAsyncRepository<ApplicationUserInfo>
+    public interface IApplicationUserInfoCommandRepository : IAsyncRepository<UserInfo>
     {
-        void Add(ApplicationUserInfo command);
-        void UpdateRep(ApplicationUserInfo entity, UpdateApplicationUserInfoCommand model);
+        void Add(UserInfo command);
+        void UpdateRep(UserInfo entity, UpdateApplicationUserInfoCommand model);
     }
 }

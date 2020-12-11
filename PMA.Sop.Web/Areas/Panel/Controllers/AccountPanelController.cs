@@ -32,7 +32,7 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claim = claimsIdentity?.FindFirst(ClaimTypes.NameIdentifier);
             var _userId = Convert.ToInt16(claim?.Value);
-            var model = new ApplicationUserInfoDto() { IsUpdated = false };
+            var model = new ApplicationUserInfoDto() { IsUpdated = false,ApplicationUserId = _userId };
             var cmd = await Mediator.Send(new GetApplicationUserInfoQuery() { ApplicationUserId = _userId });
             if (cmd != null)
             {

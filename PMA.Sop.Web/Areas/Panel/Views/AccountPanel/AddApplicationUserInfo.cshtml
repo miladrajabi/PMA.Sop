@@ -2,7 +2,7 @@
 @using System.Security.Claims
 @model PMA.Sop.Domain.DTOs.User.ApplicationUserInfoDto
 @{
-    var readOnly = Model.IsUpdated ? "readonly" : string.Empty;
+    var readOnly = Model.IsUpdated ? "readonly" : "false";
 }
 
 @{
@@ -66,7 +66,7 @@
                                             <div class="row">
                                                 <div class="form-group">
                                                     <label asp-for="NationalCode"></label>
-                                                    <input asp-for="NationalCode" type="number" class="form-control" placeholder="@_resourceManager[SharedResource.NationalCode]" aria-describedby="email-address" readonly="@readOnly">
+                                                    <input asp-for="NationalCode" type="number" class="form-control" placeholder="@_resourceManager[SharedResource.NationalCode]" aria-describedby="email-address">
                                                     <span asp-validation-for="NationalCode" class="text-danger"></span>
                                                 </div>
                                             </div>
@@ -104,18 +104,12 @@
 </section>
 @section Scripts{
     <script>
-        $('document').ready(function () {
-            $("a").removeClass("active");
-            $("#userInfo").addClass("active");
+    $('document').ready(function() {
+        $("a").removeClass("active");
+        $("#userInfo").addClass("active");
+        if ('@Model.IsUpdated' == true) {
+            $("#NationalCode").attr('readonly', 'readonly');
+        }
+        </script>
 
-                                        //$('#date4').MdPersianDateTimePicker({
-                                        //    targetTextSelector: '#inputDate4',
-                                        //    fromDate: true,
-                                        //    enableTimePicker: true,
-                                        //    groupId: 'rangeSelector1',
-                                        //    dateFormat: 'yyyy-MM-dd HH:mm:ss',
-                                        //    textFormat: 'yyyy-MM-dd HH:mm:ss',
-                                        //});
-    </script>
-
-}
+    }
