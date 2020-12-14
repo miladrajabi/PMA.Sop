@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PMA.Sop.ApplicationServices.Convertors;
 using PMA.Sop.ApplicationServices.Products.Command.Brands;
+using PMA.Sop.ApplicationServices.Products.Queries.Brands;
 using PMA.Sop.ApplicationServices.User.Command;
 using PMA.Sop.ApplicationServices.User.Queries;
 using PMA.Sop.Core.Convertors.Interfaces;
@@ -19,8 +20,10 @@ using PMA.Sop.DAL.Context;
 using PMA.Sop.DAL.Context.UOW;
 using PMA.Sop.DAL.Product.Repositories.Brands;
 using PMA.Sop.DAL.User.Repositories;
+using PMA.Sop.Domain.DTOs.Products;
 using PMA.Sop.Domain.DTOs.User;
 using PMA.Sop.Domain.Product.Commands.Brands;
+using PMA.Sop.Domain.Product.Queries.Brands;
 using PMA.Sop.Domain.Product.Repositories.Brands;
 using PMA.Sop.Domain.SeedWork;
 using PMA.Sop.Domain.User.Commands;
@@ -28,6 +31,8 @@ using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Domain.User.Queries;
 using PMA.Sop.Domain.User.Repositories;
 using PMA.Sop.Framework.Commands;
+using PMA.Sop.Framework.Common.File;
+using PMA.Sop.Framework.Common.Interfaces;
 using PMA.Sop.Framework.Dtos;
 using PMA.Sop.Framework.Queries;
 using PMA.Sop.Framework.Resources;
@@ -56,7 +61,7 @@ namespace PMA.Sop.Web.IoC
             services.AddTransient<IResourceManager, ResourceManager<SharedResource>>();
             services.AddTransient<IViewRenderService, RenderViewToString>();
             services.AddTransient<IUnitOfWork, UnitOfWork>();
-
+            services.AddSingleton<IFileHandler, FileHandler>();
             #region Repository
             services.AddTransient<IApplicationUserInfoCommandRepository, ApplicationUserInfoCommandRepository>();
             services.AddTransient<IBrandsCommandRepository, BrandsCommandRepository>();
@@ -71,6 +76,8 @@ namespace PMA.Sop.Web.IoC
             services.AddTransient<IRequestHandler<UpdateApplicationUserInfoCommand, ResultDto>, UserInfoCommandHandler>();
 
             services.AddTransient<IRequestHandler<GetApplicationUserInfoQuery, ApplicationUserInfoDto>, UserInfoQueryHandler>();
+
+            services.AddTransient<IRequestHandler<GetBrandQueries, IReadOnlyList<GetBrandDto>>, GetBrandQueryHandler>();
 
 
             #region Products

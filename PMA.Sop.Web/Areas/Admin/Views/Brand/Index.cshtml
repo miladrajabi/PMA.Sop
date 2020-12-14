@@ -1,0 +1,121 @@
+﻿@using PMA.Sop.Domain.DTOs.Products
+@model IReadOnlyList<PMA.Sop.Domain.DTOs.Products.GetBrandDto>
+@inject IResourceManager _resourceManager
+
+@{
+    ViewData["Title"] = _resourceManager[SharedResource.Role];
+}
+
+
+<div class="content-header">
+    <div class="d-flex align-items-center">
+        <div class="mr-auto">
+            <h3 class="page-title">کاربران</h3>
+            <div class="d-inline-block align-items-center">
+                <nav>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-area="Admin" asp-controller="Home" asp-action="Index">
+                                <i class="mdi mdi-home-outline"></i>
+                            </a>
+                        </li>
+                        <li class="breadcrumb-item" aria-current="page">@_resourceManager[SharedResource.UserManagement]</li>
+                        <li class="breadcrumb-item active" aria-current="page">@_resourceManager[SharedResource.Role]</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<section class="content">
+    <div class="row">
+
+        <div class="col-12">
+            <div class="box">
+                <div class="box-header">
+                    <h4 class="box-title">کاربران</h4>
+                </div>
+                <div class="box-body">
+                    <div class="clearfix">
+                        <a class="btn btn-success btn-flat mb-5" asp-area="Admin" asp-controller="Brand" asp-action="Create">
+                            <i class="fa fa-plus"></i>
+                            افزودن
+                        </a>
+                    </div>
+                    <div class="table-responsive ">
+                        <table id="complex_header" class="table table-striped table-bordered  dt-responsive nowrap display"
+                               style="width: 100%">
+                            <thead>
+                                <tr>
+                                    <th>ردیف</th>
+                                    <th>@_resourceManager[SharedResource.Title]</th>
+                                    <th>@_resourceManager[SharedResource.Description]</th>
+                                    <th>@_resourceManager[SharedResource.EnglishTitle]</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @{ var row = 1;}
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@row</td>
+                                        <td>@item.Title</td>
+                                        <td>@item.Description</td>
+                                        <td>@item.EnglishTitle</td>
+                                        <td>
+                                            <a class="btn btn-info btn-xs">
+                                                <i class="fa fa-edit"></i>
+                                            </a>
+                                            <a class="btn  btn-danger btn-xs">
+                                                <i class="fa fa-remove"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    row++;
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!--@section Scripts
+{-->
+
+<!--<script>
+
+    $(document).ready(function () {
+        $('#brandTable').dataTable({
+
+            "processing": true,
+            "serverSide": true,
+            "filter": true,
+            "ajax": {
+                "url": "/admin/Brand/list",
+                "type": "POST",
+                "datatype": "json"
+            },
+            "columnDefs": [{
+                "targets": [0],
+                "visible": false,
+                "searchable": false
+            }],
+            "columns": [
+                { "data": "Title", "name": "@_resourceManager[SharedResource.Title]", "autoWidth": true },
+                { "data": "EnglishTitle", "name": "@_resourceManager[SharedResource.EnglishTitle]", "autoWidth": true },
+                { "data": "Description", "name": "@_resourceManager[SharedResource.Description]", "autoWidth": true },
+                {
+                    "render": function (data,row) { return "<a href='#' class='btn btn-danger' onclick=DeleteCustomer('" + row.id+ "'); >Delete</a>";   },
+                }
+            ]
+        });
+    });
+
+</script>-->
+}

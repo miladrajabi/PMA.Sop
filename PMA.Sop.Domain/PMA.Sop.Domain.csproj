@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Product\Queries\" />
     <Folder Include="Sample\Commands\" />
     <Folder Include="Sample\Entities\" />
     <Folder Include="Sample\Repositories\" />

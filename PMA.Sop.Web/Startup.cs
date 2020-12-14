@@ -1,3 +1,5 @@
+using System.IO;
+using System.Text.Json.Serialization;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -5,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileProviders;
 using PMA.Sop.Resources.Resources;
 using PMA.Sop.Web.IoC;
 
@@ -38,7 +41,13 @@ namespace PMA.Sop.Web
                 {
                     options.DataAnnotationLocalizerProvider = (type, factory) =>
                         factory.Create(typeof(SharedResource));
+                })
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    options.JsonSerializerOptions.PropertyNamingPolicy = null;
                 });
+            ;
 
             //services.Configure<RazorViewEngineOptions>(o =>
             //{
@@ -47,7 +56,10 @@ namespace PMA.Sop.Web
 
             services.AddAntiforgery();
             services.AddIoc(_configuration);
-            
+            services.AddSingleton<IFileProvider>(
+                new PhysicalFileProvider(
+                    Path.Combine(Directory.GetCurrentDirectory(), "wwwroot")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

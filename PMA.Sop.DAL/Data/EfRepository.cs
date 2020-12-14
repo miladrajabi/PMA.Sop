@@ -57,18 +57,24 @@ namespace PMA.Sop.DAL.Data
         public virtual async Task<int> CountAsync(ISpecification<T> spec, bool asNoTracking = false)
         {
             var specificationResult = ApplySpecification(spec);
+            if (asNoTracking)
+                return await specificationResult.AsNoTracking().CountAsync();
             return await specificationResult.CountAsync();
         }
 
         public virtual async Task<T> FirstAsync(ISpecification<T> spec, bool asNoTracking = false)
         {
             var specificationResult = ApplySpecification(spec);
+            if (asNoTracking)
+                return await specificationResult.AsNoTracking().FirstAsync();
             return await specificationResult.FirstAsync();
         }
 
         public virtual async Task<T> FirstOrDefaultAsync(ISpecification<T> spec, bool asNoTracking = false)
         {
             var specificationResult = ApplySpecification(spec);
+            if (asNoTracking)
+                return await specificationResult.AsNoTracking().FirstOrDefaultAsync();
             return await specificationResult.FirstOrDefaultAsync();
         }
 
@@ -98,7 +104,7 @@ namespace PMA.Sop.DAL.Data
                 .ToListAsync();
         }
 
-        private IQueryable<T> ApplySpecification(ISpecification<T> spec, bool asNoTracking = false)
+        private IQueryable<T> ApplySpecification(ISpecification<T> spec)
         {
             var evaluator = new SpecificationEvaluator<T>();
             return evaluator.GetQuery(_dbSet.AsQueryable(), spec);
