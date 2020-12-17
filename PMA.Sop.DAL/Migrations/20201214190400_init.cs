@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace PMA.Sop.DAL.Migrations
 {
-    public partial class Products : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -15,7 +15,8 @@ namespace PMA.Sop.DAL.Migrations
                 schema: "pr",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Src = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     EnglishTitle = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: true),
@@ -132,8 +133,6 @@ namespace PMA.Sop.DAL.Migrations
                     Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
                     ParentId = table.Column<long>(type: "bigint", nullable: true),
                     Icon = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    CategoryId = table.Column<long>(type: "bigint", nullable: true),
                     CreateDate = table.Column<DateTime>(type: "DateTime", nullable: false),
                     ModifiedDate = table.Column<DateTime>(type: "DateTime", nullable: true),
                     CreatorUserId = table.Column<int>(type: "int", nullable: true),
@@ -145,8 +144,8 @@ namespace PMA.Sop.DAL.Migrations
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Categories_Categories_CategoryId",
-                        column: x => x.CategoryId,
+                        name: "FK_Categories_Categories_ParentId",
+                        column: x => x.ParentId,
                         principalSchema: "pr",
                         principalTable: "Categories",
                         principalColumn: "Id",
@@ -452,9 +451,9 @@ namespace PMA.Sop.DAL.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<long>(type: "bigint", nullable: false),
-                    IsShow = table.Column<bool>(type: "bit", nullable: false),
-                    IsBaseImage = table.Column<bool>(type: "bit", nullable: false),
-                    Src = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    IsShow = table.Column<bool>(type: "bit", nullable: true, defaultValue: true),
+                    IsBaseImage = table.Column<bool>(type: "bit", nullable: true, defaultValue: false),
+                    Src = table.Column<string>(type: "varchar(1000)", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -545,16 +544,16 @@ namespace PMA.Sop.DAL.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Categories_CategoryId",
-                schema: "pr",
-                table: "Categories",
-                column: "CategoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Categories_CreatorUserId",
                 schema: "pr",
                 table: "Categories",
                 column: "CreatorUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categories_ParentId",
+                schema: "pr",
+                table: "Categories",
+                column: "ParentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Districts_ProvinceId1",

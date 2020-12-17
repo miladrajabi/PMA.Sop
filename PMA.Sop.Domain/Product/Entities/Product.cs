@@ -13,7 +13,6 @@ namespace PMA.Sop.Domain.Product.Entities
         public int Color { get; set; }
         public decimal PriceDiscount { get; set; }
         public int Discount { get; set; }
-
         public bool Displayed { get; set; } = true;
         public bool CanPurchase { get; set; } = true;
         public int Quantity { get; set; }

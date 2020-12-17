@@ -10,8 +10,8 @@ using PMA.Sop.DAL.Context;
 namespace PMA.Sop.DAL.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20201211084357_Products")]
-    partial class Products
+    [Migration("20201214190400_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -19,7 +19,7 @@ namespace PMA.Sop.DAL.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.1");
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
@@ -125,7 +125,9 @@ namespace PMA.Sop.DAL.Migrations
             modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Brand", b =>
                 {
                     b.Property<int>("Id")
-                        .HasColumnType("int");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -159,9 +161,6 @@ namespace PMA.Sop.DAL.Migrations
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<long?>("CategoryId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("DateTime");
 
@@ -183,9 +182,6 @@ namespace PMA.Sop.DAL.Migrations
                     b.Property<long?>("ParentId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("ProductId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime?>("RemoveTime")
                         .HasColumnType("DateTime");
 
@@ -196,9 +192,9 @@ namespace PMA.Sop.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoryId");
-
                     b.HasIndex("CreatorUserId");
+
+                    b.HasIndex("ParentId");
 
                     b.ToTable("Categories", "pr");
                 });
@@ -346,17 +342,23 @@ namespace PMA.Sop.DAL.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<bool>("IsBaseImage")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("IsBaseImage")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(false);
 
-                    b.Property<bool>("IsShow")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("IsShow")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bit")
+                        .HasDefaultValue(true);
 
                     b.Property<long>("ProductId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Src")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("varchar(1000)");
 
                     b.HasKey("Id");
 
@@ -878,15 +880,17 @@ namespace PMA.Sop.DAL.Migrations
 
             modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Category", b =>
                 {
-                    b.HasOne("PMA.Sop.Domain.Product.Entities.Category", null)
-                        .WithMany("Children")
-                        .HasForeignKey("CategoryId");
-
                     b.HasOne("PMA.Sop.Domain.User.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany("Categories")
                         .HasForeignKey("CreatorUserId");
 
+                    b.HasOne("PMA.Sop.Domain.Product.Entities.Category", "Parent")
+                        .WithMany("Children")
+                        .HasForeignKey("ParentId");
+
                     b.Navigation("ApplicationUser");
+
+                    b.Navigation("Parent");
                 });
 
             modelBuilder.Entity("PMA.Sop.Domain.Product.Entities.Product", b =>

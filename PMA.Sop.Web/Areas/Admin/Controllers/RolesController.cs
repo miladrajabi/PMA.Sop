@@ -12,11 +12,11 @@ using PMA.Sop.Framework.Web;
 namespace PMA.Sop.Web.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    public class RolesController : BaseController
+    public class RolesController : BaseController <ApplicationUser>
     {
 
         private readonly RoleManager<ApplicationRole> _roleManager;
-        public RolesController(IMediator mediator, RoleManager<ApplicationRole> roleManager) : base(mediator)
+        public RolesController(IMediator mediator, UserManager<ApplicationUser> userManager, RoleManager<ApplicationRole> roleManager) : base(mediator, userManager)
         {
             _roleManager = roleManager;
         }

@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Product\Repositories\Categories\" />
     <Folder Include="Sample\Commands\" />
     <Folder Include="Sample\Entities\" />
     <Folder Include="Sample\Repositories\" />

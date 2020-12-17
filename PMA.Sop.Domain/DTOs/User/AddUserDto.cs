@@ -14,6 +14,11 @@ namespace PMA.Sop.Domain.DTOs.User
         [Required(ErrorMessage = SharedResource.Required)]
         public string UserName { get; set; }
 
+        [DisplayName(SharedResource.Email)]
+        [EmailAddress(ErrorMessage = SharedResource.EmailError)]
+        //[Required(ErrorMessage = SharedResource.Required)]
+        public string Email { get; set; }
+
         [DataType(DataType.Password)]
         [DisplayName(SharedResource.Password)]
         [Required(ErrorMessage = SharedResource.Required)]

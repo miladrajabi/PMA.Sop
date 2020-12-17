@@ -130,5 +130,16 @@
         #endregion
 
         public const string File = nameof(File);
+
+        #region Product
+
+        public const string Parent = nameof(Parent);
+        public const string Brand = nameof(Brand);
+        public const string Product = nameof(Product);
+        public const string ProductManagement = nameof(ProductManagement);
+        public const string Category = nameof(Category);
+
+
+        #endregion
     }
 }

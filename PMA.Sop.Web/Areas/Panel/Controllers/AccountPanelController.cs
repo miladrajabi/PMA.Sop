@@ -4,8 +4,10 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using PMA.Sop.Domain.DTOs.User;
 using PMA.Sop.Domain.User.Commands;
+using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Domain.User.Queries;
 using PMA.Sop.Framework.Dtos;
 using PMA.Sop.Framework.Web;
@@ -16,9 +18,9 @@ namespace PMA.Sop.Web.Areas.Panel.Controllers
     [Area(nameof(Panel))]
     [Route("[area]/[controller]/[action]")]
     [Authorize]
-    public class AccountPanelController : BaseController
+    public class AccountPanelController : BaseController<ApplicationUser>
     {
-        public AccountPanelController(IMediator mediator) : base(mediator)
+        public AccountPanelController(IMediator mediator, UserManager<ApplicationUser> userManager) : base(mediator, userManager)
         {
 
         }

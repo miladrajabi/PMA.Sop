@@ -3,23 +3,24 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using PMA.Sop.Domain.DTOs.Products;
 using PMA.Sop.Domain.Product.Commands.Brands;
 using PMA.Sop.Domain.Product.Queries.Brands;
+using PMA.Sop.Domain.User.Entities;
 using PMA.Sop.Framework.Common.Interfaces;
 using PMA.Sop.Framework.Web;
 
 namespace PMA.Sop.Web.Areas.Admin.Controllers
 {
     [Area(nameof(Admin))]
-    public class BrandController : BaseController
+    public class BrandController : BaseController<ApplicationUser>
     {
         private readonly string brandFilePath = @"file\images\brands";
         private readonly IFileHandler _fileHandler;
 
-        public BrandController(IMediator mediator, IFileHandler fileHandler) : base(mediator)
+        public BrandController(IMediator mediator, UserManager<ApplicationUser> userManager) : base(mediator, userManager)
         {
-            this._fileHandler = fileHandler;
         }
         public async Task<IActionResult> Index()
         {
@@ -53,7 +54,7 @@ namespace PMA.Sop.Web.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateBrandDto model)
         {
-            if (!ModelState.IsValid) return View(new CreateBrandDto());
+            if (!ModelState.IsValid) return View(model);
             if (model.File != null)
             {
                 var file = await _fileHandler.UploadFileAsync(model.File, brandFilePath);

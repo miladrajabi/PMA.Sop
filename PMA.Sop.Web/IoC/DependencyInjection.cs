@@ -10,7 +10,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PMA.Sop.ApplicationServices.Convertors;
 using PMA.Sop.ApplicationServices.Products.Command.Brands;
+using PMA.Sop.ApplicationServices.Products.Command.Categories;
 using PMA.Sop.ApplicationServices.Products.Queries.Brands;
+using PMA.Sop.ApplicationServices.Products.Queries.Categories;
 using PMA.Sop.ApplicationServices.User.Command;
 using PMA.Sop.ApplicationServices.User.Queries;
 using PMA.Sop.Core.Convertors.Interfaces;
@@ -19,12 +21,17 @@ using PMA.Sop.Core.Services.Interface;
 using PMA.Sop.DAL.Context;
 using PMA.Sop.DAL.Context.UOW;
 using PMA.Sop.DAL.Product.Repositories.Brands;
+using PMA.Sop.DAL.Product.Repositories.Categories;
 using PMA.Sop.DAL.User.Repositories;
 using PMA.Sop.Domain.DTOs.Products;
+using PMA.Sop.Domain.DTOs.Products.Categories;
 using PMA.Sop.Domain.DTOs.User;
 using PMA.Sop.Domain.Product.Commands.Brands;
+using PMA.Sop.Domain.Product.Commands.Categories;
 using PMA.Sop.Domain.Product.Queries.Brands;
+using PMA.Sop.Domain.Product.Queries.Categories;
 using PMA.Sop.Domain.Product.Repositories.Brands;
+using PMA.Sop.Domain.Product.Repositories.Categories;
 using PMA.Sop.Domain.SeedWork;
 using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Entities;
@@ -65,6 +72,7 @@ namespace PMA.Sop.Web.IoC
             #region Repository
             services.AddTransient<IApplicationUserInfoCommandRepository, ApplicationUserInfoCommandRepository>();
             services.AddTransient<IBrandsCommandRepository, BrandsCommandRepository>();
+            services.AddTransient<ICategoryCommandRepository, CategoryCommandRepository>();
 
 
             #endregion
@@ -73,17 +81,21 @@ namespace PMA.Sop.Web.IoC
 
 
             services.AddTransient<IRequestHandler<AddApplicationUserInfoCommand, ResultDto>, UserInfoCommandHandler>();
-            services.AddTransient<IRequestHandler<UpdateApplicationUserInfoCommand, ResultDto>, UserInfoCommandHandler>();
 
             services.AddTransient<IRequestHandler<GetApplicationUserInfoQuery, ApplicationUserInfoDto>, UserInfoQueryHandler>();
 
-            services.AddTransient<IRequestHandler<GetBrandQueries, IReadOnlyList<GetBrandDto>>, GetBrandQueryHandler>();
+
 
 
             #region Products
 
-
             services.AddTransient<IRequestHandler<BrandCreateCommand, ResultDto>, AddBrandHandler>();
+            services.AddTransient<IRequestHandler<GetBrandQueries, IReadOnlyList<GetBrandDto>>, GetBrandQueryHandler>();
+
+
+            services.AddTransient<IRequestHandler<GetCategoryQueries, IReadOnlyList<GetCategoryDto>>, CategoriesQueryHandler>();
+            services.AddTransient<IRequestHandler<CategoryCreateCommand, ResultDto>, AddCategoryHandler>();
+
             #endregion
 
             //services.AddTransient<CreateUserInfoCommandValidator>();

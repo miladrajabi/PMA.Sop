@@ -1,13 +1,15 @@
-﻿@model PMA.Sop.Domain.DTOs.Products.CreateBrandDto
-@inject IResourceManager _resourceManager
+﻿@inject IResourceManager _resourceManager
+@using PMA.Sop.Domain.Enum
+@model PMA.Sop.Domain.DTOs.Products.Categories.CreateCategoryDto
 @{
-    ViewData["Title"] = _resourceManager[SharedResource.Brand];
+    ViewData["Title"] = _resourceManager[SharedResource.Role];
 }
+
 
 <div class="content-header">
     <div class="d-flex align-items-center">
         <div class="mr-auto">
-            <h3 class="page-title">کاربران</h3>
+            <h3 class="page-title">@_resourceManager[SharedResource.ProductManagement]</h3>
             <div class="d-inline-block align-items-center">
                 <nav>
                     <ol class="breadcrumb">
@@ -17,22 +19,23 @@
                             </a>
                         </li>
                         <li class="breadcrumb-item" aria-current="page">@_resourceManager[SharedResource.Product]</li>
-                        <li class="breadcrumb-item active" aria-current="page">@_resourceManager[SharedResource.Brand]</li>
+                        <li class="breadcrumb-item active" aria-current="page">@_resourceManager[SharedResource.Category]</li>
                     </ol>
                 </nav>
             </div>
         </div>
     </div>
 </div>
+
 <section class="content">
     <div class="row">
         <div class="col-12">
             <div class="box">
                 <div class="box-header">
-                    <h4 class="box-title">@_resourceManager[SharedResource.Role]</h4>
+                    <h4 class="box-title">@_resourceManager[SharedResource.Product]</h4>
                 </div>
                 <div class="box-body">
-                    <form enctype="multipart/form-data" asp-action="Create" asp-controller="Brand" asp-area="Admin" method="post">
+                    <form enctype="multipart/form-data" asp-action="Create" asp-controller="Category" asp-area="Admin" method="post">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group row">
                             <div class="col-md-6">
@@ -43,40 +46,26 @@
                                 <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                             <div class="col-md-6">
-                                <label asp-for="EnglishTitle" class="control-label"></label>
+                                <label asp-for="ParentId" class="control-label"></label>
                                 <div class="input-group">
-                                    <input type="text" asp-for="EnglishTitle" class="form-control" />
+                                    <drop-down-list-font-awesome a></drop-down-list-font-awesome>
+                                    <select asp-for="ParentId" class="form-control select2" asp-items="@Model.Parent">
+                                        <option value="0" selected="selected">انتخاب کنید</option>
+                                    </select>
                                 </div>
-                                <span asp-validation-for="EnglishTitle" class="text-danger"></span>
+                                <span asp-validation-for="ParentId" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group">
-                                    <label asp-for="Description" class="control-label"></label>
-                                    <textarea asp-for="Description" rows="5" cols="5" placeholder="@_resourceManager[SharedResource.Description]" class="form-control"></textarea>
-                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                <label asp-for="Icon" class="control-label"></label>
+                                <div class="input-group">
+                                    <drop-down-list-font-awesome asp-for="Icon" ></drop-down-list-font-awesome>
                                 </div>
+                                <span asp-validation-for="Icon" class="text-danger"></span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <label asp-for="File" class="control-label"></label>
-                                    <input type="file" asp-for="File" />
-                                    <span asp-validation-for="File" class="text-danger"></span>
-                                </div>
-                            </div>
-                        </div>
-                        @*<div class="row">
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label asp-for="Description" class="control-label"></label>
-                                        <input asp-page-handler="Upload" class="btn" type="submit" value="Upload" />
-                                        <span asp-validation-for="Description" class="text-danger"></span>
-                                    </div>
-                                </div>
-                            </div>*@
+
                         <div class="box-footer text-right">
                             <button class="btn btn-success mr-1 mb-5 pull-right" type="submit">
                                 <span class="fa fa-check-circle"></span>
@@ -96,4 +85,14 @@
 
 </section>
 
+@section style
+{
+    @*<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet" />*@
 
+    <style>
+        select {
+            font-family: 'FontAwesome', 'sans-serif';
+        }
+    </style>
+
+}

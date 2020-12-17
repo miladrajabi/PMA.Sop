@@ -15,7 +15,7 @@ namespace PMA.Sop.DAL.Data
     public class EfRepository<T> : IAsyncRepository<T> where T : class, IAggregateRoot
     {
         protected readonly DatabaseContext DbContext;
-        private readonly DbSet<T> _dbSet;
+        protected readonly DbSet<T> _dbSet;
 
         public EfRepository(DatabaseContext dbContext)
         {
@@ -30,12 +30,16 @@ namespace PMA.Sop.DAL.Data
 
         public virtual async Task<IReadOnlyList<T>> ListAllAsync(bool asNoTracking = false)
         {
+            if (asNoTracking)
+                return await _dbSet.AsNoTracking().ToListAsync();
             return await _dbSet.ToListAsync();
         }
 
         public virtual async Task<IReadOnlyList<T>> ListAsync(ISpecification<T> spec, bool asNoTracking = false)
         {
             var specificationResult = ApplySpecification(spec);
+            if (asNoTracking)
+                specificationResult = specificationResult.AsNoTracking();
             return await specificationResult.ToListAsync();
         }
 
@@ -58,7 +62,7 @@ namespace PMA.Sop.DAL.Data
         {
             var specificationResult = ApplySpecification(spec);
             if (asNoTracking)
-                return await specificationResult.AsNoTracking().CountAsync();
+                specificationResult = specificationResult.AsNoTracking();
             return await specificationResult.CountAsync();
         }
 
@@ -66,7 +70,7 @@ namespace PMA.Sop.DAL.Data
         {
             var specificationResult = ApplySpecification(spec);
             if (asNoTracking)
-                return await specificationResult.AsNoTracking().FirstAsync();
+                specificationResult = specificationResult.AsNoTracking();
             return await specificationResult.FirstAsync();
         }
 
@@ -74,7 +78,7 @@ namespace PMA.Sop.DAL.Data
         {
             var specificationResult = ApplySpecification(spec);
             if (asNoTracking)
-                return await specificationResult.AsNoTracking().FirstOrDefaultAsync();
+                specificationResult = specificationResult.AsNoTracking();
             return await specificationResult.FirstOrDefaultAsync();
         }
 
