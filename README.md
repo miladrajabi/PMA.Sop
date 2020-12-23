@@ -2,7 +2,7 @@
 
 This source code is used with a talk I give on Onion Architecture
 
-Give a Star! ⭐ 
+# Give a Star! ⭐ 
 
 If you like or are using this project to learn or start your solution, please give it a star. Thanks!
 
