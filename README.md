@@ -9,14 +9,16 @@ If you like or are using this project to learn or start your solution, please gi
 Or if you're feeling really generous, we now support GitHub sponsorships - see the button above.
 
 
-Getting Started
+# Getting Started
 Use these instructions to get the project up and running.
 
-Prerequisites
+# Prerequisites
 You will need the following tools:
 
 Visual Studio 2019
+
 .Net 5.0 or later
+
 EF Core 5.0 or later
 
 Core Layer
