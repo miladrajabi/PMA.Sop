@@ -15,11 +15,11 @@ Use these instructions to get the project up and running.
 # Prerequisites
 You will need the following tools:
 
-Visual Studio 2019
+Visual Studio 2019 
 
-.Net 5.0 or later
+.Net 5.0 
 
-EF Core 5.0 or later
+EF Core 5.0 
 
 Core Layer
 Development of Domain Logic with abstraction. Interfaces drives business requirements with light implementation. The Core project is the center of the Clean Architecture design, and all other project dependencies should point toward it..
