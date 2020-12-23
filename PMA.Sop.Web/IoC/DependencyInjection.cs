@@ -11,6 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using PMA.Sop.ApplicationServices.Convertors;
 using PMA.Sop.ApplicationServices.Products.Command.Brands;
 using PMA.Sop.ApplicationServices.Products.Command.Categories;
+using PMA.Sop.ApplicationServices.Products.Command.Products;
 using PMA.Sop.ApplicationServices.Products.Queries.Brands;
 using PMA.Sop.ApplicationServices.Products.Queries.Categories;
 using PMA.Sop.ApplicationServices.User.Command;
@@ -22,16 +23,19 @@ using PMA.Sop.DAL.Context;
 using PMA.Sop.DAL.Context.UOW;
 using PMA.Sop.DAL.Product.Repositories.Brands;
 using PMA.Sop.DAL.Product.Repositories.Categories;
+using PMA.Sop.DAL.Product.Repositories.Products;
 using PMA.Sop.DAL.User.Repositories;
 using PMA.Sop.Domain.DTOs.Products;
 using PMA.Sop.Domain.DTOs.Products.Categories;
 using PMA.Sop.Domain.DTOs.User;
 using PMA.Sop.Domain.Product.Commands.Brands;
 using PMA.Sop.Domain.Product.Commands.Categories;
+using PMA.Sop.Domain.Product.Commands.Products;
 using PMA.Sop.Domain.Product.Queries.Brands;
 using PMA.Sop.Domain.Product.Queries.Categories;
 using PMA.Sop.Domain.Product.Repositories.Brands;
 using PMA.Sop.Domain.Product.Repositories.Categories;
+using PMA.Sop.Domain.Product.Repositories.Products;
 using PMA.Sop.Domain.SeedWork;
 using PMA.Sop.Domain.User.Commands;
 using PMA.Sop.Domain.User.Entities;
@@ -73,6 +77,7 @@ namespace PMA.Sop.Web.IoC
             services.AddTransient<IApplicationUserInfoCommandRepository, ApplicationUserInfoCommandRepository>();
             services.AddTransient<IBrandsCommandRepository, BrandsCommandRepository>();
             services.AddTransient<ICategoryCommandRepository, CategoryCommandRepository>();
+            services.AddTransient<IProductsRepository, ProductsRepository>();
 
 
             #endregion
@@ -95,6 +100,9 @@ namespace PMA.Sop.Web.IoC
 
             services.AddTransient<IRequestHandler<GetCategoryQueries, IReadOnlyList<GetCategoryDto>>, CategoriesQueryHandler>();
             services.AddTransient<IRequestHandler<CategoryCreateCommand, ResultDto>, AddCategoryHandler>();
+
+            services.AddTransient<IRequestHandler<ProductsCreateCommand, ResultDto>, AddProductsHandler>();
+
 
             #endregion
 

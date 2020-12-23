@@ -8,13 +8,15 @@ namespace PMA.Sop.Domain.DTOs.Products.Categories
 {
     public class CreateCategoryDto : BaseModelDto<long>
     {
-        [MaxLength(200, ErrorMessage = SharedResource.MaxLength_256)]
+        [MaxLength(200, ErrorMessage = SharedResource.MaxLength_200)]
         [Required(ErrorMessage = SharedResource.Required)]
         [DisplayName(SharedResource.Title)]
         public string Title { get; set; }
 
-        [DisplayName(SharedResource.Title)]
+        [DisplayName(SharedResource.Parent)]
         public long? ParentId { get; set; }
+
+        [DisplayName(SharedResource.Icon)]
         public string Icon { get; set; }
 
         public List<SelectListItem> Parent { get; set; }

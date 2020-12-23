@@ -1,23 +1,25 @@
 ﻿using System.Collections.Generic;
 using PMA.Sop.Domain.Common;
+using PMA.Sop.Domain.Interfaces;
 
 namespace PMA.Sop.Domain.Product.Entities
 {
-    public class Product : BaseUserEntity<long>
+    public class Product : BaseUserEntity<long>, IAggregateRoot
     {
         public string Code { get; set; }
         public string Title { get; set; }
         public string EnglishTitle { get; set; }
         public string Description { get; set; }
         public decimal Price { get; set; }
-        public int Color { get; set; }
-        public decimal PriceDiscount { get; set; }
-        public int Discount { get; set; }
+        public string Color { get; set; }
+        public decimal? PriceDiscount { get; set; }
+        public int? Discount { get; set; }
         public bool Displayed { get; set; } = true;
         public bool CanPurchase { get; set; } = true;
         public int Quantity { get; set; }
 
         public long BrandId { get; set; }
+        public long CategoryId { get; set; }
 
         #region Relationships
         public virtual Brand Brand { get; set; }

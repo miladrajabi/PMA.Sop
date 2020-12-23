@@ -1,0 +1,120 @@
+﻿@model PMA.Sop.Domain.DTOs.Products.Product.ProductDto
+
+<div class="form-group row p-15">
+    <div class="col-md-6">
+        <label asp-for="Title" class="control-label"></label>
+        <div class="input-group">
+            <input type="text" asp-for="Title" class="form-control" />
+        </div>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="EnglishTitle" class="control-label"></label>
+        <div class="input-group">
+            <input type="text" asp-for="EnglishTitle" class="form-control" />
+        </div>
+        <span asp-validation-for="EnglishTitle" class="text-danger"></span>
+    </div>
+
+</div>
+<div class="form-group row p-15">
+    <div class="col-md-6">
+        <label asp-for="Code" class="control-label"></label>
+        <div class="input-group">
+            <input type="text" asp-for="Code" class="form-control" />
+        </div>
+        <span asp-validation-for="Code" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Quantity" class="control-label"></label>
+        <div class="input-group">
+            @*<input class="vertical-spin" asp-for="Quantity" type="text" data-bts-button-down-class="btn btn-secondary" data-bts-button-up-class="btn btn-secondary" value="0">*@
+
+            <input type="number" asp-for="Quantity" class="form-control" />
+        </div>
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row p-15">
+    <div class="col-md-6">
+        <label asp-for="CategoryId" class="control-label"></label>
+        <div class="input-group">
+            <select asp-for="CategoryId" class="form-control select2" asp-items="@Model.Category">
+                <option value="0" selected="selected">انتخاب کنید</option>
+            </select>
+        </div>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="BrandId" class="control-label"></label>
+        <div class="input-group">
+            <select asp-for="BrandId" class="form-control select2" asp-items="@Model.Brand">
+                <option value="0" selected="selected">انتخاب کنید</option>
+            </select>
+        </div>
+        <span asp-validation-for="BrandId" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row p-15">
+    <div class="col-md-6">
+        <label asp-for="CanPurchase" for="ProductDto_CanPurchase" class="control-label"></label>
+        <div class="input-group">
+            <input type="checkbox" asp-for="CanPurchase" class="chk-col-primary" checked />
+        </div>
+        <span asp-validation-for="CanPurchase" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Displayed" for="ProductDto_Displayed" class="control-label"></label>
+        <div class="input-group">
+            <input type="checkbox" asp-for="Displayed" class="chk-col-success" checked />
+        </div>
+        <span asp-validation-for="Displayed" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row p-15">
+    <div class="col-md-4">
+        <label asp-for="Price" class="control-label"></label>
+        <div class="input-group">
+            <input type="text" asp-for="Price" onkeyup="format(this)" class="form-control" />
+        </div>
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="PriceDiscount" class="control-label"></label>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+                <span class="input-group-text">عدد</span>
+            </div>
+            <input type="text" asp-for="PriceDiscount" onkeyup="format(this)" class="form-control" />
+        </div>
+        <span asp-validation-for="PriceDiscount" class="text-danger"></span>
+    </div>
+    <div class="col-md-4">
+        <label asp-for="Discount" class="control-label"></label>
+        <div class="input-group flex-nowrap">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="addon-wrapping">%</span>
+            </div>
+            <input type="number" asp-for="Discount" class="form-control" aria-describedby="addon-wrapping" />
+        </div>
+        <span asp-validation-for="Discount" class="text-danger"></span>
+    </div>
+</div>
+<hr />
+<div class="form-group row p-15">
+    <div class="col-md-1">
+    </div>
+    <div class="col-md-10">
+        <label asp-for="Description" class="control-label"></label>
+        <div class="input-group">
+            <textarea id="editor1" name="editor1" rows="10" cols="200"></textarea>
+        </div>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="col-md-1">
+    </div>
+</div>
+
+<input type="hidden" asp-for="Category" />
+<input type="hidden" asp-for="Brand" />
+

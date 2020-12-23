@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
@@ -18,7 +16,6 @@ namespace PMA.Sop.Web.Areas.Admin.Controllers
     [Area(nameof(Admin))]
     public class CategoryController : BaseController<ApplicationUser>
     {
-        private readonly ApplicationUser _user;
         public CategoryController(IMediator mediator, UserManager<ApplicationUser> userManager) : base(mediator, userManager)
         {
         }

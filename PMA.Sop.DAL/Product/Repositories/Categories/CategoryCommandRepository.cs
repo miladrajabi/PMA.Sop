@@ -13,7 +13,6 @@ namespace PMA.Sop.DAL.Product.Repositories.Categories
         public CategoryCommandRepository(DatabaseContext dbContext) : base(dbContext)
         {
         }
-
         public override async Task<IReadOnlyList<Category>> ListAllAsync(bool asNoTracking = false)
         {
             var rep =await _dbSet.Include(x => x.Parent).AsNoTracking().ToListAsync();

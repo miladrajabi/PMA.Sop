@@ -1,0 +1,62 @@
+﻿@model PMA.Sop.Domain.DTOs.Products.Product.ProductFeatureDto
+@inject IResourceManager _resourceManager
+
+<div class="form-group row p-15">
+    <div class="col-md-6">
+        <label asp-for="Title" class="control-label"></label>
+        <div class="input-group">
+            <input type="text" asp-for="Title" class="form-control" />
+        </div>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="EnglishTitle" class="control-label"></label>
+        <div class="input-group">
+            <input type="text" asp-for="EnglishTitle" class="form-control" />
+        </div>
+        <span asp-validation-for="EnglishTitle" class="text-danger"></span>
+    </div>
+</div>
+<div class="form-group row p-15">
+    <div class="col-md-12">
+        <label asp-for="Description" class="control-label"></label>
+        <div class="input-group">
+            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+        </div>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+</div>
+
+<div class="form-group row p-15">
+    <div class="col-md-12">
+        <a href="javascript:void(0)" class="btn btn-primary" id="addFeatureBtn">ADD MOVIE</a>
+    </div>
+</div>
+
+<div class="form-group row p-15">
+    <div class="col-md-12">
+        <section id="MsnContainer">
+            <section class="text-center">
+                <label class="font-weight-bold text-danger" id="Msn"></label>
+            </section>
+        </section>
+        <br><br>
+        <section id="table-container">
+
+            <table class="table table-bordered table-striped" id="table-information">
+                <thead>
+                    <tr class="bg-info text-light font-weight-bold text-center">
+                        <td>Title</td>
+                        <td>English title</td>
+                        <td>Desc</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody id="table-body"></tbody>
+
+            </table>
+
+        </section>
+    </div>
+</div>
+

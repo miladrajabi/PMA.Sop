@@ -115,11 +115,13 @@
         public const string Title = nameof(Title);
         public const string EnglishTitle = nameof(EnglishTitle);
         public const string IsNotUnique = nameof(IsNotUnique);
+        public const string SaveError = nameof(SaveError);
 
         #region  Button
         public const string Cancel = nameof(Cancel);
+        public const string Code = nameof(Code);
 
-        
+
 
         #endregion
 
@@ -138,6 +140,21 @@
         public const string Product = nameof(Product);
         public const string ProductManagement = nameof(ProductManagement);
         public const string Category = nameof(Category);
+        public const string Color = nameof(Color);
+        public const string PriceDiscount = nameof(PriceDiscount);
+        public const string Displayed = nameof(Displayed);
+        public const string CanPurchase = nameof(CanPurchase);
+        public const string Icon = nameof(Icon);
+        public const string ProductFeature = nameof(ProductFeature);
+
+
+
+        public const string ProductImagesError = nameof(ProductImagesError);
+        public const string ProductFeaturesError = nameof(ProductFeaturesError);
+        public const string ProductTechnicianError = nameof(ProductTechnicianError);
+
+        public const string MaxLength_200 = nameof(MaxLength_200);
+        public const string MaxLength_10 = nameof(MaxLength_10);
 
 
         #endregion
