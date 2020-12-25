@@ -49,7 +49,6 @@ namespace PMA.Sop.Web.Areas.Admin.Controllers
                         Text = x.Title.ToString()
                     }).ToList(),
                 },
-                ProductFeatureDto = new ProductFeatureDto()
             };
             return View(model);
         }

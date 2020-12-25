@@ -36,19 +36,19 @@
                         <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#productFeatures" role="tab"><span><i class="ion-ios-pricetag-outline mr-15"></i>@_resourceManager[SharedResource.ProductFeature]</span></a> </li>
                         <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages8" role="tab"><span><i class="ion-email mr-15"></i>ایمیل</span></a> </li>
                     </ul>
-                    <form enctype="multipart/form-data" asp-action="Create" asp-controller="Product" asp-area="Admin" method="post">
+                    <form enctype="multipart/form-data" asp-action="Create" asp-controller="Product" asp-area="Admin" method="post" id="productform">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="tab-content tabcontent-border">
                             <div class="tab-pane active" id="product" role="tabpanel">
                                 <partial name="_product" for="@Model.ProductDto" />
                             </div>
                             <div class="tab-pane" id="productFeatures" role="tabpanel">
-                                <partial name="_productFeatures" for="@Model.ProductFeatureDto" />
+                                <partial name="_productFeatures" />
 
                             </div>
                         </div>
                         <div class="box-footer text-right">
-                            <button class="btn btn-success mr-1 mb-5 pull-right" type="submit">
+                            <button class="btn btn-success mr-1 mb-5 pull-right" id="btnSubmit" disabled="disabled" type="button" onclick="onSubmit()">
                                 <span class="fa fa-check-circle"></span>
                                 @_resourceManager[SharedResource.Save]
                             </button>
@@ -69,6 +69,7 @@
 
 @section Scripts
 {
+    <script src="~/Admin/js/productFeatures.js"></script>
     <script>
         function format(input) {
             var nStr = input.value + '';
@@ -84,98 +85,45 @@
         }
 
         $(document).ready(function() {
-            //set onclick events for buttons  
             $('#addFeatureBtn').click(function() { AddTempFeatures(); });
         });
 
-        function AddTempFeatures() {
-            var Feature = {};
-            Feature.Title = $('#ProductFeatureDto_Title').val();
-            Feature.EnglishTitle = $('#ProductFeatureDto_EnglishTitle').val();
-            Feature.Description = $('#ProductFeatureDto_Description').val();
-            var Errors = "";
-            if (Feature.Title.trim().length == 0) {
-                Errors += "عنوان را وارد نمایید.<br>";
-                $('#ProductFeatureDto_Title').addClass("border-danger");
-            } else {
-                $('#ProductFeatureDto_Title').removeClass("border-danger");
-            }
 
-            if (Feature.Description.trim().length == 0) {
-                Errors += "لطفا توضیحات را وارد نمایید.<br>";
-                $('#ProductFeatureDto_Description').addClass("border-danger");
-            } else {
-                $('#ProductFeatureDto_Description').removeClass("border-danger");
-            }
-            if (Errors.length > 0) { //if errors detected then notify user and cancel transaction
-                ShowMsn(Errors);
-                return false; //exit function
-            }
-            var ExistTitle = false; // < -- Main indicator
-            $('#table-information > tbody  > tr').each(function() {
-                var title = $(this).find('.TitleCol').text(); // get text of current row by class selector
-                if (Feature.Title.toLowerCase() === title.toLowerCase()) { //Compare provided and existing title
-                    ExistTitle = true;
-                    return false;
-                }
+        function onSubmit() {
+            var featuresList = []; // list object
+            $('#table-information > tbody  > tr').each(function() { //loop in table list
+                var feature = {}; // create new Movie object and set its properties
+                feature.Title = this.cells[0].innerHTML;
+                feature.EnglishTitle = this.cells[1].innerHTML;
+                feature.Description = this.cells[2].innerHTML;
+                featuresList.push(feature); // add Movie object to list object
             });
+            var $form = $("#productform");
 
-            if (ExistTitle === false) {
-                ClearMsn();
-                //Create Row element with provided data
-                var Row = $('<tr>');
-                $('<td>').html(Feature.Title).addClass("TitleCol").appendTo(Row);
-                $('<td>').html(Feature.EnglishTitle).appendTo(Row);
-                $('<td>').html(Feature.Description).appendTo(Row);
-                $('<td>').html("<div class='text-center'><button class='btn btn-danger btn-sm' onclick='Delete($(this))'>حذف</button></div>").appendTo(Row);
-
-                //Append row to table's body
-                $('#table-body').append(Row);
-                CheckSubmitBtn(); // Enable submit button
-            } else {
-                ShowMsn("Title can not be duplicated.");
+            var model = {
+                "ProductFeatureDto": featuresList
             }
-        }
-
-        function ClearForm() {
-            $('#form-container input[type="text"]').val('');
-        }
-
-        //Msn label for notifications
-        function ShowMsn(message) {
-            $('#Msn').html(message);
-        }
-
-        //Clear text of Msn label
-        function ClearMsn() {
-            $('#Msn').html("");
-        }
-
-        //Delete selected row
-        function Delete(row) { // remove row from table
-            row.closest('tr').remove();
-            CheckSubmitBtn();
-        }
-
-        function CheckSubmitBtn() {
-            if ($('#table-information > tbody  > tr').length > 0) { // count items in table if at least 1 item is found then enable button  
-                $('#SubmitMoviesBtn').removeAttr("disabled");
-            } else {
-                $('#SubmitMoviesBtn').attr("disabled", "disabled");
+            $form.add(model);
+            $.validator.unobtrusive.parse($form);
+            if ($form.valid()) {
+                $.ajax({
+                    type: "post",
+                    url: "/Admin/product/create",
+                    data: $form,
+                    datatype: "json",
+                    cache: false,
+                    success: function(data) {
+                        alert("You Multiple Data Passed Successfully");
+                    },
+                    error: function(xhr) {
+                        alert('No Valid Data');
+                    }
+                });
             }
+            
+
         }
 
-        function PostData() {
-            var featuresList = []; // list object  
-            $('#table-information > tbody  > tr').each(function () { //loop in table list  
-  
-                var feature = {}; // create new Movie object and set its properties  
-                feature.Title = this.cells[0].innerHTML;  
-                feature.EnglishTitle = this.cells[1].innerHTML;  
-                feature.Description = this.cells[2].innerHTML;  
-                featuresList.push(feature); // add Movie object to list object  
-            });  
-        }
 
     </script>
 
